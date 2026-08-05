@@ -1,0 +1,51 @@
+name: Build native Windows subtitle hook
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/build-windows-hook.yml"
+      - "scripts/build-windows-hook.ps1"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - name: Check out build recipe
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+
+      - name: Build twice and structurally validate Win32 hook
+        shell: pwsh
+        run: |
+          $firstBuild = "$env:RUNNER_TEMP/wa2-native-windows-hook"
+          $secondBuild = "$env:RUNNER_TEMP/wa2-native-windows-hook-second"
+
+          ./scripts/build-windows-hook.ps1 -OutputDirectory $firstBuild
+          ./scripts/build-windows-hook.ps1 -OutputDirectory $secondBuild
+
+          $firstHash = (Get-FileHash -Algorithm SHA256 "$firstBuild/d3d9.dll").Hash.ToLowerInvariant()
+          $secondHash = (Get-FileHash -Algorithm SHA256 "$secondBuild/d3d9.dll").Hash.ToLowerInvariant()
+          if ($firstHash -ne $secondHash) {
+            throw "Two clean builds produced different DLLs: $firstHash vs. $secondHash"
+          }
+
+          Copy-Item "$secondBuild/build-provenance.json" "$firstBuild/second-build-provenance.json"
+          [ordered]@{
+            schema_version = 1
+            clean_builds_compared = 2
+            byte_identical = $true
+            sha256 = $firstHash
+          } |
+            ConvertTo-Json |
+            Set-Content "$firstBuild/reproducibility.json" -Encoding utf8
+
+      - name: Upload build-validated hook
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: wa2-native-windows-hook-27636f5
+          path: ${{ runner.temp }}/wa2-native-windows-hook
+          if-no-files-found: error
+          retention-days: 30

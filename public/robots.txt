@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mao-tls.github.io/white-album-2/sitemap.xml
