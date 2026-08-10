@@ -6,11 +6,11 @@ import { SiteFooter } from "./SiteFooter";
 export const dynamic = "force-static";
 
 const completeDownloadUrl =
-  "https://github.com/MAO-TLs/white-album-2/releases/download/v1.2.6/White_Album_2_Complete_English_Release_v1.2.6.zip";
+  "https://github.com/MAO-TLs/white-album-2/releases/download/v1.2.7/White_Album_2_Complete_English_Release_v1.2.7.zip";
 const completeArchiveSha256 =
-  "6ad54894ba7fb29f05de72623dc5f7253e9a558038595172a6457c5950f6bd86";
+  "ef1ff54b8e71936ecc330e72d0a0c3843e8953ae4d531539ae10d5aa2b3924cf";
 const releaseNotesUrl =
-  "https://github.com/MAO-TLs/white-album-2/releases/tag/v1.2.6";
+  "https://github.com/MAO-TLs/white-album-2/releases/tag/v1.2.7";
 
 export default function Home() {
   return (
@@ -65,7 +65,7 @@ export default function Home() {
             </div>
             <p className="compatibility">
               716 MB · <a href={releaseNotesUrl}>Release notes</a> · Version
-              1.2.6 · Windows + Wine/CrossOver · Japanese Extended Edition
+              1.2.7 · Windows + Wine/CrossOver · Japanese Extended Edition
               required
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function Home() {
         <div className="shell release-grid">
           <div>
             <span className="release-label">Version</span>
-            <strong>v1.2.6</strong>
+            <strong>v1.2.7</strong>
           </div>
           <div>
             <span className="release-label">Script coverage</span>
@@ -252,7 +252,7 @@ export default function Home() {
               The Windows hook was built from source and structurally
               validated; native Windows gameplay has not been locally
               smoke-tested. The unchanged Wine/CrossOver runtime was tested
-              for v1.1.0. The v1.2.6 movie patcher passed two complete 30-file
+              for v1.1.0. The unchanged movie patcher passed two complete 30-file
               CrossOver renders with exact-output verification, a real first-
               run download, repeat-run and restoration tests, and both launcher
               checks. Normal story pages are capped at 55 half-width cells per

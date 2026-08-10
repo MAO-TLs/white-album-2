@@ -26,7 +26,7 @@ test("exports the release, script, and audit pages", async () => {
 
   assert.ok(home.includes("<h1>WHITE<br/>ALBUM 2</h1>"));
   assert.match(home, /release-label">Version/i);
-  assert.match(home, /v1\.2\.6/i);
+  assert.match(home, /v1\.2\.7/i);
   assert.match(home, /WHITE ALBUM 2 Special Contents/i);
   assert.doesNotMatch(home, /Mini After Story|Coming soon/i);
   assert.match(home, /Project Lead/i);
@@ -46,11 +46,11 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(home, /native Windows gameplay has not been locally/i);
   assert.match(
     home,
-    /White_Album_2_Complete_English_Release_v1\.2\.6\.zip/i,
+    /White_Album_2_Complete_English_Release_v1\.2\.7\.zip/i,
   );
   assert.match(
     home,
-    /6ad54894ba7fb29f05de72623dc5f7253e9a558038595172a6457c5950f6bd86/i,
+    /ef1ff54b8e71936ecc330e72d0a0c3843e8953ae4d531539ae10d5aa2b3924cf/i,
   );
   assert.match(home, /capped at 55[\s\S]*three lines/i);
   assert.match(home, /Launch WHITE ALBUM 2\.command/i);
@@ -68,7 +68,7 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(home, /wa2-winter-night-960\.webp/i);
   assert.match(home, /wa2-winter-night\.webp/i);
   assert.match(script, /Script browser/i);
-  assert.match(script, /Script Version v1\.2\.6/i);
+  assert.match(script, /Script Version v1\.2\.7/i);
   assert.match(script, /77,198/i);
   assert.doesNotMatch(script, /including every Special Contents script/i);
   assert.match(audit, /Todokanai TL audit/i);
@@ -508,7 +508,7 @@ test("ships the full clean public script index", async () => {
   const indexPath = new URL("script-data/index.json", exportRoot);
   const index = JSON.parse(await readFile(indexPath, "utf8"));
 
-  assert.equal(index.version, "1.2.6");
+  assert.equal(index.version, "1.2.7");
   assert.equal(index.totalLines, 77198);
   assert.equal(index.routes.length, 4);
   assert.equal(
@@ -617,7 +617,7 @@ test("ships a complete lazy-loaded corpus concordance", async () => {
   assert.equal(index.concordance.schema, "wa2-public-concordance/1");
   assert.equal(index.concordance.totalLines, 77198);
   assert.equal(primary.schema, "wa2-public-concordance/1");
-  assert.equal(primary.version, "1.2.6");
+  assert.equal(primary.version, "1.2.7");
   assert.equal(primary.totalLines, 77198);
   assert.deepEqual(primary.fields, [
     "ref",
