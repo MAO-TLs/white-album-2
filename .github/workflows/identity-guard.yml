@@ -27,6 +27,9 @@ jobs:
           AFTER_SHA: ${{ github.sha }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          API_URL: ${{ github.api_url }}
+          REPOSITORY: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
 
@@ -41,14 +44,14 @@ jobs:
           fi
 
           if [[ "$EVENT_NAME" == 'pull_request' ]]; then
-            range="$BASE_SHA..$HEAD_SHA"
+            mapfile -t commits < <(git rev-list "$BASE_SHA..$HEAD_SHA")
           elif [[ -z "${BEFORE_SHA:-}" || "$BEFORE_SHA" == "$zero" ]]; then
-            range="$AFTER_SHA"
+            # A new branch has no remote parent range. Verify the pushed tip
+            # itself instead of traversing the repository's inherited history.
+            commits=("$AFTER_SHA")
           else
-            range="$BEFORE_SHA..$AFTER_SHA"
+            mapfile -t commits < <(git rev-list "$BEFORE_SHA..$AFTER_SHA")
           fi
-
-          mapfile -t commits < <(git rev-list "$range")
           if (( ${#commits[@]} == 0 )); then
             echo 'Rejected: no commits were available for identity verification.' >&2
             exit 1
@@ -60,12 +63,23 @@ jobs:
             committer_name=$(git show -s --format='%cn' "$commit")
             committer_email=$(git show -s --format='%ce' "$commit")
 
-            if [[ "$author_name" != "$expected_name" ||
-                  "$author_email" != "$expected_email" ||
-                  "$committer_name" != "$expected_name" ||
-                  "$committer_email" != "$expected_email" ]]; then
-              echo "Rejected commit $commit: author and committer must use the MAO-TLs identity." >&2
+            if [[ "$author_name" != "$expected_name" || "$author_email" != "$expected_email" ]]; then
+              echo "Rejected commit $commit: author must use the MAO-TLs identity." >&2
               exit 1
+            fi
+
+            if [[ "$committer_name" != "$expected_name" || "$committer_email" != "$expected_email" ]]; then
+              # GitHub rewrites committer metadata when MAO-TLs uses its own
+              # rebase-merge button. Accept that generated identity only when
+              # GitHub itself associates the commit with the MAO-TLs account.
+              linked_committer=$(curl --fail --silent --show-error \
+                --header "Authorization: Bearer $GH_TOKEN" \
+                --header 'X-GitHub-Api-Version: 2022-11-28' \
+                "$API_URL/repos/$REPOSITORY/commits/$commit" | jq -r '.committer.login // empty')
+              if [[ "$linked_committer" != "$expected_actor" ]]; then
+                echo "Rejected commit $commit: committer is not linked to MAO-TLs." >&2
+                exit 1
+              fi
             fi
           done
 
