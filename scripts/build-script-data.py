@@ -824,7 +824,7 @@ def main() -> None:
 
     concordance = {
         "schema": "wa2-public-concordance/1",
-        "version": "1.2.6",
+        "version": "1.2.7",
         "totalLines": public_total_lines,
         "fields": [
             "ref",
@@ -867,7 +867,7 @@ def main() -> None:
 
     index = {
         "schema": "wa2-public-script-browser/2",
-        "version": "1.2.6",
+        "version": "1.2.7",
         "generatedAt": datetime.now(timezone.utc).isoformat(),
         "totalLines": public_total_lines,
         "concordance": {
