@@ -26,7 +26,7 @@ test("exports the release, script, and audit pages", async () => {
 
   assert.ok(home.includes("<h1>WHITE<br/>ALBUM 2</h1>"));
   assert.match(home, /release-label">Version/i);
-  assert.match(home, /v1\.2\.7/i);
+  assert.match(home, /v1\.2\.8/i);
   assert.match(home, /WHITE ALBUM 2 Special Contents/i);
   assert.doesNotMatch(home, /Mini After Story|Coming soon/i);
   assert.match(home, /Project Lead/i);
@@ -46,11 +46,11 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(home, /native Windows gameplay has not been locally/i);
   assert.match(
     home,
-    /White_Album_2_Complete_English_Release_v1\.2\.7\.zip/i,
+    /White_Album_2_Complete_English_Release_v1\.2\.8\.zip/i,
   );
   assert.match(
     home,
-    /ef1ff54b8e71936ecc330e72d0a0c3843e8953ae4d531539ae10d5aa2b3924cf/i,
+    /04fc14bbb22ab17bcc143b53e189923c8c89c60313b4534b27a9108158419ae4/i,
   );
   assert.match(home, /capped at 55[\s\S]*three lines/i);
   assert.match(home, /Launch WHITE ALBUM 2\.command/i);
@@ -68,7 +68,7 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(home, /wa2-winter-night-960\.webp/i);
   assert.match(home, /wa2-winter-night\.webp/i);
   assert.match(script, /Script browser/i);
-  assert.match(script, /Script Version v1\.2\.7/i);
+  assert.match(script, /Script Version v1\.2\.8/i);
   assert.match(script, /77,198/i);
   assert.doesNotMatch(script, /including every Special Contents script/i);
   assert.match(audit, /Todokanai TL audit/i);
@@ -159,6 +159,43 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(notFound, /href=["']\/white-album-2\/["']/i);
   assert.match(notFound, /href=["']\/white-album-2\/script\/["']/i);
   assert.match(notFound, /href=["']\/white-album-2\/audit\/["']/i);
+});
+
+test("publishes the v1.2.8 clock and restaurant repairs", async () => {
+  const payloads = await Promise.all(
+    ["intro-1006", "closing-2005", "closing-2012", "closing-2507", "coda-3210"].map(
+      (name) =>
+        readFile(new URL(`script-data/${name}.json`, exportRoot), "utf8").then(
+          JSON.parse,
+        ),
+    ),
+  );
+  const lines = new Map(
+    payloads.flatMap((payload) => payload.lines).map((line) => [line.ref, line.english]),
+  );
+
+  assert.equal(
+    lines.get("wa2:ic:1006:27"),
+    "Ogiso had called late the night before—just before one in the morning.",
+  );
+  assert.equal(
+    lines.get("wa2:cc:2012:512"),
+    "It was already three in the morning—which still belonged, in my mind, to Wednesday night.",
+  );
+  assert.equal(
+    lines.get("wa2:cc:2507:4"),
+    "It was now 1:15 Sunday morning—still Saturday night, by Mari’s reckoning.",
+  );
+  assert.equal(
+    lines.get("wa2:coda:3210:736"),
+    "By that reckoning, it was still the night of February twenty-ninth—",
+  );
+  assert.equal(
+    lines.get("wa2:cc:2005:91"),
+    "“Mr. Satou! What is going on here?!”",
+  );
+  assert.match(lines.get("wa2:cc:2005:95"), /Hamburg steak combo/);
+  assert.equal(lines.get("wa2:cc:2005:149"), "“…What is it, boss?”");
 });
 
 test("releases the one-time install fragment after navigation", async () => {
@@ -508,7 +545,7 @@ test("ships the full clean public script index", async () => {
   const indexPath = new URL("script-data/index.json", exportRoot);
   const index = JSON.parse(await readFile(indexPath, "utf8"));
 
-  assert.equal(index.version, "1.2.7");
+  assert.equal(index.version, "1.2.8");
   assert.equal(index.totalLines, 77198);
   assert.equal(index.routes.length, 4);
   assert.equal(
@@ -617,7 +654,7 @@ test("ships a complete lazy-loaded corpus concordance", async () => {
   assert.equal(index.concordance.schema, "wa2-public-concordance/1");
   assert.equal(index.concordance.totalLines, 77198);
   assert.equal(primary.schema, "wa2-public-concordance/1");
-  assert.equal(primary.version, "1.2.7");
+  assert.equal(primary.version, "1.2.8");
   assert.equal(primary.totalLines, 77198);
   assert.deepEqual(primary.fields, [
     "ref",

@@ -21,8 +21,8 @@ WORKSPACE_ROOT = (
 SOURCE_PATH = WORKSPACE_ROOT / "outputs/wa2-retranslation/data/corpus.jsonl"
 FINAL_PATH = (
     WORKSPACE_ROOT
-    / "outputs/wa2-retranslation/runs/literary_reauthor_v1_2/v1_2_6"
-    / "corpora/main.jsonl"
+    / "outputs/wa2-retranslation/runs/literary_reauthor_v1_2/v1_2_8"
+    / "materialized_v3/corpora/main.jsonl"
 )
 SPEAKER_PATH = (
     WORKSPACE_ROOT
@@ -35,8 +35,8 @@ MAS_SOURCE_PATH = (
 )
 MAS_FINAL_PATH = (
     WORKSPACE_ROOT
-    / "outputs/wa2-retranslation/runs/literary_reauthor_v1_2/v1_2_6"
-    / "corpora/special.jsonl"
+    / "outputs/wa2-retranslation/runs/literary_reauthor_v1_2/v1_2_8"
+    / "materialized_v3/corpora/special.jsonl"
 )
 MAS_SPEAKER_PATH = (
     WORKSPACE_ROOT
@@ -824,7 +824,7 @@ def main() -> None:
 
     concordance = {
         "schema": "wa2-public-concordance/1",
-        "version": "1.2.7",
+        "version": "1.2.8",
         "totalLines": public_total_lines,
         "fields": [
             "ref",
@@ -867,7 +867,7 @@ def main() -> None:
 
     index = {
         "schema": "wa2-public-script-browser/2",
-        "version": "1.2.7",
+        "version": "1.2.8",
         "generatedAt": datetime.now(timezone.utc).isoformat(),
         "totalLines": public_total_lines,
         "concordance": {

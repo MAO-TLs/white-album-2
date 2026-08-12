@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "WHITE ALBUM 2 Script Browser",
     description:
-      "Browse all 77,198 main-game and Special Contents lines beside the v1.2.7 MAO English translation.",
+      "Browse all 77,198 main-game and Special Contents lines beside the v1.2.8 MAO English translation.",
     url: "https://mao-tls.github.io/white-album-2/script/",
     siteName: "MAO Translations",
     images: [
@@ -50,11 +50,11 @@ export default function ScriptPage() {
           currentPage="script"
         />
         <div className="reader-intro shell">
-          <p className="eyebrow">Script Version v1.2.7</p>
+          <p className="eyebrow">Script Version v1.2.8</p>
           <h1>Script browser</h1>
           <p>
             Search the complete 77,198-line corpus or read any of its 254
-            scripts beside the v1.2.7 MAO English translation. An optional
+            scripts beside the v1.2.8 MAO English translation. An optional
             comparison with the earlier Todokanai TL and bundled WA2Analysis
             prose can be displayed where aligned data is available.
           </p>

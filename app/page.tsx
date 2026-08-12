@@ -6,11 +6,11 @@ import { SiteFooter } from "./SiteFooter";
 export const dynamic = "force-static";
 
 const completeDownloadUrl =
-  "https://github.com/MAO-TLs/white-album-2/releases/download/v1.2.7/White_Album_2_Complete_English_Release_v1.2.7.zip";
+  "https://github.com/MAO-TLs/white-album-2/releases/download/v1.2.8/White_Album_2_Complete_English_Release_v1.2.8.zip";
 const completeArchiveSha256 =
-  "ef1ff54b8e71936ecc330e72d0a0c3843e8953ae4d531539ae10d5aa2b3924cf";
+  "04fc14bbb22ab17bcc143b53e189923c8c89c60313b4534b27a9108158419ae4";
 const releaseNotesUrl =
-  "https://github.com/MAO-TLs/white-album-2/releases/tag/v1.2.7";
+  "https://github.com/MAO-TLs/white-album-2/releases/tag/v1.2.8";
 
 export default function Home() {
   return (
@@ -65,7 +65,7 @@ export default function Home() {
             </div>
             <p className="compatibility">
               716 MB · <a href={releaseNotesUrl}>Release notes</a> · Version
-              1.2.7 · Windows + Wine/CrossOver · Japanese Extended Edition
+              1.2.8 · Windows + Wine/CrossOver · Japanese Extended Edition
               required
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function Home() {
         <div className="shell release-grid">
           <div>
             <span className="release-label">Version</span>
-            <strong>v1.2.7</strong>
+            <strong>v1.2.8</strong>
           </div>
           <div>
             <span className="release-label">Script coverage</span>

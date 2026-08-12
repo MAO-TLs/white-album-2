@@ -4,11 +4,11 @@ Release site and public script browser for the MAO English translation of
 *WHITE ALBUM 2*.
 
 [Project site](https://mao-tls.github.io/white-album-2/) ·
-[Complete v1.2.7 release](https://github.com/MAO-TLs/white-album-2/releases/download/v1.2.7/White_Album_2_Complete_English_Release_v1.2.7.zip)
+[Complete v1.2.8 release](https://github.com/MAO-TLs/white-album-2/releases/download/v1.2.8/White_Album_2_Complete_English_Release_v1.2.8.zip)
 
 ## Release
 
-- Version: `v1.2.7`
+- Version: `v1.2.8`
 - Coverage: Introductory Chapter, Closing Chapter, Coda,
   *WHITE ALBUM 2 Special Contents*, all eleven audio dramas, all fifteen
   main-game movies, and two translated digital novels
@@ -17,20 +17,19 @@ Release site and public script browser for the MAO English translation of
 - Optional comparison: Todokanai TL English and the WA2Analysis prose bundled
   with its Special Contents release are displayed only where aligned
 - Complete archive SHA-256:
-  `ef1ff54b8e71936ecc330e72d0a0c3843e8953ae4d531539ae10d5aa2b3924cf`
+  `04fc14bbb22ab17bcc143b53e189923c8c89c60313b4534b27a9108158419ae4`
 
-The v1.2.7 archive restores all 50 applicable source-authored continuation
-boundaries in the main-game story resources. This prevents independently
-stored engine fragments from being measured as though each began at the left
-edge of a fresh textbox. Normal story pages remain capped at 55 CP932
+v1.2.8 applies 2,246 source-adjudicated American-English repairs across the
+complete release: 1,804 in the main game, 373 in Special Contents, and 69 in
+the audio-drama translation. The two rebuilt digital-novel PDFs contain 349 of
+those repairs; all 248 rendered pages were inspected. The audio dramas also
+receive 105 separately counted subtitle-presentation updates, with timings and
+audio/video streams preserved. Normal story pages remain capped at 55 CP932
 half-width cells per line and three lines before an engine-native page break.
-The 77,198-line English corpus is unchanged. The archive also retains the 28
-source-audited script corrections in the preceding content release—26 in the
-main game and two in Special Contents—and the corrected public Todokanai TL
-audit. It includes independently translated subtitles for all fifteen
-main-game movies. Instead of distributing 1.2 GB of pre-rendered movies, the
-movie patcher renders them locally from the verified Japanese originals. The
-digital-novel PDFs are unchanged from v1.2.4.
+The release retains the corrected public Todokanai TL audit and independently
+translated subtitles for all fifteen main-game movies. Instead of distributing
+1.2 GB of pre-rendered movies, the movie patcher renders them locally from the
+verified Japanese originals.
 
 ## Installation
 
