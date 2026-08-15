@@ -20,9 +20,9 @@ export function SiteFooter({
         <div className="release-hashes">
           <div>
             <span>
-              {archiveSha256 ? "v1.2.8 archive SHA-256" : "Script version"}
+              {archiveSha256 ? "v1.3.0 archive SHA-256" : "Script version"}
             </span>
-            <code>{archiveSha256 ?? "v1.2.8"}</code>
+            <code>{archiveSha256 ?? "v1.3.0"}</code>
             {archiveHashAction}
           </div>
         </div>

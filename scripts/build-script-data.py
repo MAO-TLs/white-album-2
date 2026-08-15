@@ -8,7 +8,6 @@ import hashlib
 import os
 import re
 from collections import Counter, OrderedDict
-from datetime import datetime, timezone
 from pathlib import Path
 
 
@@ -21,9 +20,10 @@ WORKSPACE_ROOT = (
 SOURCE_PATH = WORKSPACE_ROOT / "outputs/wa2-retranslation/data/corpus.jsonl"
 FINAL_PATH = (
     WORKSPACE_ROOT
-    / "outputs/wa2-retranslation/runs/literary_reauthor_v1_2/v1_2_8"
-    / "materialized_v3/corpora/main.jsonl"
+    / "outputs/wa2-retranslation/runs/literary_reauthor_v1_3/v1_3_0"
+    / "materialized_editorial/corpora/main.jsonl"
 )
+FINAL_SHA256 = "70b9f278d3028926cbe95a88c3ef0593020dbab61da80312b1515a52be982e68"
 SPEAKER_PATH = (
     WORKSPACE_ROOT
     / "outputs/wa2-retranslation/runs/literary_reauthor_v1_2/v1_2_4"
@@ -35,9 +35,10 @@ MAS_SOURCE_PATH = (
 )
 MAS_FINAL_PATH = (
     WORKSPACE_ROOT
-    / "outputs/wa2-retranslation/runs/literary_reauthor_v1_2/v1_2_8"
-    / "materialized_v3/corpora/special.jsonl"
+    / "outputs/wa2-retranslation/runs/literary_reauthor_v1_3/v1_3_0"
+    / "materialized_editorial/corpora/special.jsonl"
 )
+MAS_FINAL_SHA256 = "d364596f6175923b6720bb6a0f58829fa228840e302e13df8e0b8ca52f979d1e"
 MAS_SPEAKER_PATH = (
     WORKSPACE_ROOT
     / "outputs/wa2-retranslation/runs/mas_v1/inputs/speaker_labels.json"
@@ -70,6 +71,8 @@ TODOKANAI_SPECIAL_SOURCE_URL = (
     "1AS1v0hceMsYYKEz8l1yTKhu8f3dKAhbu/view?usp=sharing"
 )
 WA2ANALYSIS_SOURCE_URL = "https://wa2analysis.com/"
+PUBLIC_VERSION = "1.3.0"
+PUBLIC_GENERATED_AT = "2026-08-16T00:00:00+00:00"
 TODOKANAI_ARCHIVE_SHA256 = (
     "671408427341185c1331731e4cdc0e3d793b9754beb8e4c1e77e89d3db21ddf3"
 )
@@ -519,6 +522,11 @@ def load_todokanai_runtime_rows() -> list[dict]:
 
 
 def main() -> None:
+    if sha256_file(FINAL_PATH) != FINAL_SHA256:
+        raise SystemExit("pinned v1.3.0 main corpus differs")
+    if sha256_file(MAS_FINAL_PATH) != MAS_FINAL_SHA256:
+        raise SystemExit("pinned v1.3.0 Special Contents corpus differs")
+
     sources = read_jsonl(SOURCE_PATH)
     finals = read_jsonl(FINAL_PATH)
     todokanai_rows = load_todokanai_runtime_rows()
@@ -824,7 +832,7 @@ def main() -> None:
 
     concordance = {
         "schema": "wa2-public-concordance/1",
-        "version": "1.2.8",
+        "version": PUBLIC_VERSION,
         "totalLines": public_total_lines,
         "fields": [
             "ref",
@@ -867,8 +875,8 @@ def main() -> None:
 
     index = {
         "schema": "wa2-public-script-browser/2",
-        "version": "1.2.8",
-        "generatedAt": datetime.now(timezone.utc).isoformat(),
+        "version": PUBLIC_VERSION,
+        "generatedAt": PUBLIC_GENERATED_AT,
         "totalLines": public_total_lines,
         "concordance": {
             "schema": concordance["schema"],

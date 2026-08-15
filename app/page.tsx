@@ -6,11 +6,11 @@ import { SiteFooter } from "./SiteFooter";
 export const dynamic = "force-static";
 
 const completeDownloadUrl =
-  "https://github.com/MAO-TLs/white-album-2/releases/download/v1.2.8/White_Album_2_Complete_English_Release_v1.2.8.zip";
+  "https://github.com/MAO-TLs/white-album-2/releases/download/v1.3.0/White_Album_2_Complete_English_Release_v1.3.0.zip";
 const completeArchiveSha256 =
-  "04fc14bbb22ab17bcc143b53e189923c8c89c60313b4534b27a9108158419ae4";
+  "ccfe82b5a4573173cd46074cc8487947afcafb2023c06cb60dd0a9b2255c1f2b";
 const releaseNotesUrl =
-  "https://github.com/MAO-TLs/white-album-2/releases/tag/v1.2.8";
+  "https://github.com/MAO-TLs/white-album-2/releases/tag/v1.3.0";
 
 export default function Home() {
   return (
@@ -64,8 +64,8 @@ export default function Home() {
               </a>
             </div>
             <p className="compatibility">
-              716 MB · <a href={releaseNotesUrl}>Release notes</a> · Version
-              1.2.8 · Windows + Wine/CrossOver · Japanese Extended Edition
+              716.8 MB · <a href={releaseNotesUrl}>Release notes</a> · Version
+              1.3.0 · Windows + Wine/CrossOver · Japanese Extended Edition
               required
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function Home() {
         <div className="shell release-grid">
           <div>
             <span className="release-label">Version</span>
-            <strong>v1.2.8</strong>
+            <strong>v1.3.0</strong>
           </div>
           <div>
             <span className="release-label">Script coverage</span>
@@ -251,12 +251,14 @@ export default function Home() {
             <p>
               The Windows hook was built from source and structurally
               validated; native Windows gameplay has not been locally
-              smoke-tested. The unchanged Wine/CrossOver runtime was tested
-              for v1.1.0. The unchanged movie patcher passed two complete 30-file
-              CrossOver renders with exact-output verification, a real first-
-              run download, repeat-run and restoration tests, and both launcher
-              checks. Normal story pages are capped at 55 half-width cells per
-              line and three lines before an engine-native page break.
+              smoke-tested. v1.3.0 passed complete static presentation,
+              line-break, page-limit, reinjection, and package verification;
+              its executable was not launched for this release. The unchanged
+              movie patcher passed two complete 30-file CrossOver renders with
+              exact-output verification, a real first-run download, repeat-run
+              and restoration tests, and both launcher checks. Normal story
+              pages are capped at 55 half-width cells per line and three lines
+              before an engine-native page break.
             </p>
           </aside>
 

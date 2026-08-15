@@ -4,11 +4,11 @@ Release site and public script browser for the MAO English translation of
 *WHITE ALBUM 2*.
 
 [Project site](https://mao-tls.github.io/white-album-2/) ·
-[Complete v1.2.8 release](https://github.com/MAO-TLs/white-album-2/releases/download/v1.2.8/White_Album_2_Complete_English_Release_v1.2.8.zip)
+[Complete v1.3.0 release](https://github.com/MAO-TLs/white-album-2/releases/download/v1.3.0/White_Album_2_Complete_English_Release_v1.3.0.zip)
 
 ## Release
 
-- Version: `v1.2.8`
+- Version: `v1.3.0`
 - Coverage: Introductory Chapter, Closing Chapter, Coda,
   *WHITE ALBUM 2 Special Contents*, all eleven audio dramas, all fifteen
   main-game movies, and two translated digital novels
@@ -17,19 +17,22 @@ Release site and public script browser for the MAO English translation of
 - Optional comparison: Todokanai TL English and the WA2Analysis prose bundled
   with its Special Contents release are displayed only where aligned
 - Complete archive SHA-256:
-  `04fc14bbb22ab17bcc143b53e189923c8c89c60313b4534b27a9108158419ae4`
+  `ccfe82b5a4573173cd46074cc8487947afcafb2023c06cb60dd0a9b2255c1f2b`
 
-v1.2.8 applies 2,246 source-adjudicated American-English repairs across the
-complete release: 1,804 in the main game, 373 in Special Contents, and 69 in
-the audio-drama translation. The two rebuilt digital-novel PDFs contain 349 of
-those repairs; all 248 rendered pages were inspected. The audio dramas also
-receive 105 separately counted subtitle-presentation updates, with timings and
-audio/video streams preserved. Normal story pages remain capped at 55 CP932
-half-width cells per line and three lines before an engine-native page break.
-The release retains the corrected public Todokanai TL audit and independently
-translated subtitles for all fifteen main-game movies. Instead of distributing
-1.2 GB of pre-rendered movies, the movie patcher renders them locally from the
-verified Japanese originals.
+v1.3.0 completes a single-editor, whole-release prose revision. Every one of
+the 77,198 written script lines was read in its full script, route, and
+dramatic context, with dialogue and narration treated as equal editorial
+responsibilities. All 2,968 audio-drama cues were reviewed as part of the same
+release. The final text contains 13,495 accepted changes: 12,816 in the main
+game, 598 in Special Contents, and 81 in the audio dramas.
+
+The release focuses on natural character speech, narrative voice, comic and
+emotional timing, relationship and timeline continuity, recurring language,
+and exact callbacks. The two rebuilt digital-novel PDFs passed visual
+inspection across all 247 rendered pages. Normal story pages remain capped at
+55 CP932 half-width cells per line and three lines before an engine-native
+page break. The local movie patcher and unchanged media are inherited
+byte-for-byte from v1.2.8.
 
 ## Installation
 
@@ -55,8 +58,9 @@ movie patcher automatically preserves every Japanese movie it replaces.
 The package requires a legally obtained Japanese *WHITE ALBUM 2 Extended
 Edition* installation. The native Windows audio hook is reproducibly
 source-built and structurally validated; native-Windows gameplay was not
-locally smoke-tested. The Wine/CrossOver main-game build and the translated
-Special Contents application have passed live CrossOver runtime tests.
+locally smoke-tested. v1.3.0 passed exhaustive static presentation,
+line-break, reinjection, component, and archive verification. Its executable
+was not launched for this release.
 
 The Windows hook imports `D3DX9_43.dll`. If the main game opens to a black
 screen, install Microsoft's
