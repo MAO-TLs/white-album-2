@@ -6,11 +6,11 @@ import { SiteFooter } from "./SiteFooter";
 export const dynamic = "force-static";
 
 const completeDownloadUrl =
-  "https://github.com/MAO-TLs/white-album-2/releases/download/v1.3.0/White_Album_2_Complete_English_Release_v1.3.0.zip";
+  "https://github.com/MAO-TLs/white-album-2/releases/download/v1.3.1/White_Album_2_Complete_English_Release_v1.3.1.zip";
 const completeArchiveSha256 =
-  "ccfe82b5a4573173cd46074cc8487947afcafb2023c06cb60dd0a9b2255c1f2b";
+  "e1ecedabe9a049d4fc471cd1b341c4401b568a0fb297b29be4fb82a7195897ec";
 const releaseNotesUrl =
-  "https://github.com/MAO-TLs/white-album-2/releases/tag/v1.3.0";
+  "https://github.com/MAO-TLs/white-album-2/releases/tag/v1.3.1";
 
 export default function Home() {
   return (
@@ -65,7 +65,7 @@ export default function Home() {
             </div>
             <p className="compatibility">
               716.8 MB · <a href={releaseNotesUrl}>Release notes</a> · Version
-              1.3.0 · Windows + Wine/CrossOver · Japanese Extended Edition
+              1.3.1 · Windows + Wine/CrossOver · Japanese Extended Edition
               required
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function Home() {
         <div className="shell release-grid">
           <div>
             <span className="release-label">Version</span>
-            <strong>v1.3.0</strong>
+            <strong>v1.3.1</strong>
           </div>
           <div>
             <span className="release-label">Script coverage</span>
@@ -251,7 +251,7 @@ export default function Home() {
             <p>
               The Windows hook was built from source and structurally
               validated; native Windows gameplay has not been locally
-              smoke-tested. v1.3.0 passed complete static presentation,
+              smoke-tested. v1.3.1 passed complete static presentation,
               line-break, page-limit, reinjection, and package verification;
               its executable was not launched for this release. The unchanged
               movie patcher passed two complete 30-file CrossOver renders with
