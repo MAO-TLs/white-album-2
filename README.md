@@ -4,11 +4,11 @@ Release site and public script browser for the MAO English translation of
 *WHITE ALBUM 2*.
 
 [Project site](https://mao-tls.github.io/white-album-2/) ·
-[Complete v1.3.1 release](https://github.com/MAO-TLs/white-album-2/releases/download/v1.3.1/White_Album_2_Complete_English_Release_v1.3.1.zip)
+[Complete v1.3.2 release](https://github.com/MAO-TLs/white-album-2/releases/download/v1.3.2/White_Album_2_Complete_English_Release_v1.3.2.zip)
 
 ## Release
 
-- Version: `v1.3.1`
+- Version: `v1.3.2`
 - Coverage: Introductory Chapter, Closing Chapter, Coda,
   *WHITE ALBUM 2 Special Contents*, all eleven audio dramas, all fifteen
   main-game movies, and two translated digital novels
@@ -17,16 +17,17 @@ Release site and public script browser for the MAO English translation of
 - Optional comparison: Todokanai TL English and the WA2Analysis prose bundled
   with its Special Contents release are displayed only where aligned
 - Complete archive SHA-256:
-  `e1ecedabe9a049d4fc471cd1b341c4401b568a0fb297b29be4fb82a7195897ec`
+  `fe94b9cf8283faeb0a6d648556271abfac333d7d3f95aa0c4476f21cdebf00fd`
 
 v1.3.0 completed a single-editor, whole-release prose revision. Every one of
 the 77,198 written script lines was read in its full script, route, and
 dramatic context, with dialogue and narration treated as equal editorial
 responsibilities. All 2,968 audio-drama cues were reviewed as part of the same
-release. v1.3.1 adds thirteen source-reviewed corrections while leaving every
-other English row byte-identical to v1.3.0. The final text contains 13,504
-accepted changes: 12,820 in the main game, 602 in Special Contents, and 82 in
-the audio dramas.
+release. v1.3.2 adds seventeen narrowly scoped, source-reviewed corrections
+over v1.3.1: restored relationship and sexual referents, one deictic agent,
+and engine-safe full-width message markers. Every other English row is
+byte-identical to v1.3.1. The final text contains 13,517 accepted changes:
+12,829 in the main game, 606 in Special Contents, and 82 in the audio dramas.
 
 The release focuses on natural character speech, narrative voice, comic and
 emotional timing, relationship and timeline continuity, recurring language,
@@ -60,7 +61,7 @@ movie patcher automatically preserves every Japanese movie it replaces.
 The package requires a legally obtained Japanese *WHITE ALBUM 2 Extended
 Edition* installation. The native Windows audio hook is reproducibly
 source-built and structurally validated; native-Windows gameplay was not
-locally smoke-tested. v1.3.1 passed exhaustive static presentation,
+locally smoke-tested. v1.3.2 passed exhaustive static presentation,
 line-break, reinjection, component, and archive verification. Its executable
 was not launched for this release.
 

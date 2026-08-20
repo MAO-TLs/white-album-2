@@ -20,10 +20,10 @@ WORKSPACE_ROOT = (
 SOURCE_PATH = WORKSPACE_ROOT / "outputs/wa2-retranslation/data/corpus.jsonl"
 FINAL_PATH = (
     WORKSPACE_ROOT
-    / "outputs/wa2-retranslation/runs/literary_reauthor_v1_3/v1_3_1"
+    / "outputs/wa2-retranslation/runs/literary_reauthor_v1_3/v1_3_2"
     / "materialized_editorial/corpora/main.jsonl"
 )
-FINAL_SHA256 = "35cae5d8087e257b70da28cd8dcf18cd900fa560f35c4b172f1f72d0f95d5235"
+FINAL_SHA256 = "7a8c4a87501221f5b679684e3f9e2d5b120214307e71e8c997c4d5c8896fd228"
 SPEAKER_PATH = (
     WORKSPACE_ROOT
     / "outputs/wa2-retranslation/runs/literary_reauthor_v1_2/v1_2_4"
@@ -35,10 +35,10 @@ MAS_SOURCE_PATH = (
 )
 MAS_FINAL_PATH = (
     WORKSPACE_ROOT
-    / "outputs/wa2-retranslation/runs/literary_reauthor_v1_3/v1_3_1"
+    / "outputs/wa2-retranslation/runs/literary_reauthor_v1_3/v1_3_2"
     / "materialized_editorial/corpora/special.jsonl"
 )
-MAS_FINAL_SHA256 = "248bc86ea543170776d8c705d1923a54cd2f2ce580bed6559c0fd2b227497c7b"
+MAS_FINAL_SHA256 = "645f72ca6532892def76357cb4063da98059176a6942ebc320dadda079086b88"
 MAS_SPEAKER_PATH = (
     WORKSPACE_ROOT
     / "outputs/wa2-retranslation/runs/mas_v1/inputs/speaker_labels.json"
@@ -71,8 +71,8 @@ TODOKANAI_SPECIAL_SOURCE_URL = (
     "1AS1v0hceMsYYKEz8l1yTKhu8f3dKAhbu/view?usp=sharing"
 )
 WA2ANALYSIS_SOURCE_URL = "https://wa2analysis.com/"
-PUBLIC_VERSION = "1.3.1"
-PUBLIC_GENERATED_AT = "2026-08-17T00:00:00+00:00"
+PUBLIC_VERSION = "1.3.2"
+PUBLIC_GENERATED_AT = "2026-08-20T00:00:00+00:00"
 TODOKANAI_ARCHIVE_SHA256 = (
     "671408427341185c1331731e4cdc0e3d793b9754beb8e4c1e77e89d3db21ddf3"
 )
@@ -523,9 +523,9 @@ def load_todokanai_runtime_rows() -> list[dict]:
 
 def main() -> None:
     if sha256_file(FINAL_PATH) != FINAL_SHA256:
-        raise SystemExit("pinned v1.3.1 main corpus differs")
+        raise SystemExit("pinned v1.3.2 main corpus differs")
     if sha256_file(MAS_FINAL_PATH) != MAS_FINAL_SHA256:
-        raise SystemExit("pinned v1.3.1 Special Contents corpus differs")
+        raise SystemExit("pinned v1.3.2 Special Contents corpus differs")
 
     sources = read_jsonl(SOURCE_PATH)
     finals = read_jsonl(FINAL_PATH)
