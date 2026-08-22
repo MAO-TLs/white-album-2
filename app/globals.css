@@ -1306,6 +1306,15 @@ footer {
   overflow-wrap: anywhere;
 }
 
+.compact .script-line .line-cell,
+.compact .concordance-hit .line-cell {
+  padding-block: 12px 14px;
+}
+
+.compact .line-ref {
+  padding-block: 14px;
+}
+
 .line-cell + .line-cell {
   border-left: 1px solid var(--line);
 }

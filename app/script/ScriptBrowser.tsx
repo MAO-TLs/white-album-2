@@ -1284,7 +1284,7 @@ export function ScriptBrowser() {
               }`;
 
   return (
-    <section className="reader-shell shell">
+    <section className="reader-shell shell compact">
       <div className="reader-controls" id="reader-controls">
         <div className="control">
           <label htmlFor="route">Section</label>

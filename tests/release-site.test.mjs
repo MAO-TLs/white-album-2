@@ -338,6 +338,8 @@ test("keeps full-corpus search lazy, shareable, and navigable", async () => {
   );
   assert.match(source, /setTodokanaiConcordance\(null\)/);
   assert.match(source, /Display Todokanai TL errors/i);
+  assert.match(source, /className="reader-shell shell compact"/);
+  assert.doesNotMatch(source, /Compact line spacing|compactMode/);
   assert.match(source, /function JapaneseRubyText/);
   assert.match(source, /<ruby key=/);
   assert.match(source, /<rb>\{match\[1\]\}<\/rb>/);
@@ -368,6 +370,9 @@ test("keeps all concordance section filters in one desktop row", async () => {
     new URL("../app/globals.css", import.meta.url),
     "utf8",
   );
+
+  assert.match(css, /\.compact \.script-line \.line-cell/);
+  assert.match(css, /\.compact \.line-ref/);
 
   assert.match(
     css,
