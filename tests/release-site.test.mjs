@@ -26,7 +26,7 @@ test("exports the release, script, and audit pages", async () => {
 
   assert.ok(home.includes("<h1>WHITE<br/>ALBUM 2</h1>"));
   assert.match(home, /release-label">Version/i);
-  assert.match(home, /v1\.3\.2/i);
+  assert.match(home, /v1\.3\.3/i);
   assert.match(home, /WHITE ALBUM 2 Special Contents/i);
   assert.doesNotMatch(home, /Mini After Story|Coming soon/i);
   assert.match(home, /Project Lead/i);
@@ -46,11 +46,11 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(home, /native Windows gameplay has not been locally/i);
   assert.match(
     home,
-    /White_Album_2_Complete_English_Release_v1\.3\.2\.zip/i,
+    /White_Album_2_Complete_English_Release_v1\.3\.3\.zip/i,
   );
   assert.match(
     home,
-    /fe94b9cf8283faeb0a6d648556271abfac333d7d3f95aa0c4476f21cdebf00fd/i,
+    /e90940d3ffaa31564492585c4b92338708abc2e82f3275bc34093736a79b27ac/i,
   );
   assert.match(home, /capped at 55[\s\S]*three lines/i);
   assert.match(home, /Launch WHITE ALBUM 2\.command/i);
@@ -68,7 +68,7 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(home, /wa2-winter-night-960\.webp/i);
   assert.match(home, /wa2-winter-night\.webp/i);
   assert.match(script, /Script browser/i);
-  assert.match(script, /Script Version v1\.3\.2/i);
+  assert.match(script, /Script Version v1\.3\.3/i);
   assert.match(script, /77,198/i);
   assert.doesNotMatch(script, /including every Special Contents script/i);
   assert.match(audit, /Todokanai TL audit/i);
@@ -161,7 +161,7 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(notFound, /href=["']\/white-album-2\/audit\/["']/i);
 });
 
-test("publishes the inherited repairs and the v1.3.2 corrections", async () => {
+test("publishes the inherited repairs through the v1.3.3 corrections", async () => {
   const payloads = await Promise.all(
     ["intro-1006", "closing-2005", "closing-2012", "closing-2507", "coda-3210"].map(
       (name) =>
@@ -285,6 +285,76 @@ test("publishes the inherited repairs and the v1.3.2 corrections", async () => {
     "‘＞The roast beef seems to have worked.\n＞It isn’t dry, and I think I did rather well.’",
   );
   assert.match(v132Lines.get("wa2mas:digital_novel_5205:5205:2"), /＞Sorry, I’m at home/);
+
+  const v133Payloads = await Promise.all(
+    [
+      "closing-2029",
+      "closing-2312",
+      "closing-2402",
+      "closing-2410",
+      "coda-3010",
+      "coda-5003",
+      "coda-5101",
+      "special-5003",
+      "special-5102",
+    ].map((name) =>
+      readFile(new URL(`script-data/${name}.json`, exportRoot), "utf8").then(
+        JSON.parse,
+      ),
+    ),
+  );
+  const v133Lines = new Map(
+    v133Payloads.flatMap((payload) => payload.lines).map((line) => [line.ref, line.english]),
+  );
+  assert.equal(v133Lines.get("wa2:cc:2402:43"), "“Come on, wake up. Feeding time.”");
+  assert.equal(
+    v133Lines.get("wa2:cc:2402:45"),
+    "How many buttons had I fastened wrong to end up here?",
+  );
+  assert.equal(
+    v133Lines.get("wa2:cc:2402:52"),
+    "Was I fastening this one wrong now, or had I been fastening them wrong all along…?",
+  );
+  assert.match(
+    v133Lines.get("wa2:coda:5003:109"),
+    /Yet that very awkwardness tugged at her heartstrings\./,
+  );
+  assert.equal(
+    v133Lines.get("wa2:cc:2312:293"),
+    "Her sweet breath brushed my face. In her wet eyes, I saw the beast I’d become.",
+  );
+  assert.equal(
+    v133Lines.get("wa2:cc:2029:346"),
+    "“I told you, it’s okay. I know. I’m only reaping what I sowed.”",
+  );
+  assert.match(
+    v133Lines.get("wa2:coda:5101:57"),
+    /I know what today is for you\. I know it could cut either way\./,
+  );
+  assert.match(
+    v133Lines.get("wa2:coda:5003:13"),
+    /She failed to notice that something momentous had begun to take root inside her\./,
+  );
+  assert.equal(
+    v133Lines.get("wa2:cc:2410:476"),
+    "An insult that failed so utterly to pierce my heart… An actress of her caliber should have made that impossible.",
+  );
+  assert.equal(
+    v133Lines.get("wa2:cc:2402:868"),
+    "“Ahaha, you do look like the type. I couldn’t do the little-girl thing, though. Well, I could probably act my way through it…”",
+  );
+  assert.match(
+    v133Lines.get("wa2:coda:3010:111"),
+    /here she was sulking over it with a child’s logic\./,
+  );
+  assert.match(
+    v133Lines.get("wa2mas:digital_novel_5000:5003:109"),
+    /Yet that very awkwardness tugged at her heartstrings\./,
+  );
+  assert.match(
+    v133Lines.get("wa2mas:digital_novel_5100:5102:46"),
+    /conversation had grown too barren even for them/,
+  );
 });
 
 test("releases the one-time install fragment after navigation", async () => {
@@ -639,7 +709,7 @@ test("ships the full clean public script index", async () => {
   const indexPath = new URL("script-data/index.json", exportRoot);
   const index = JSON.parse(await readFile(indexPath, "utf8"));
 
-  assert.equal(index.version, "1.3.2");
+  assert.equal(index.version, "1.3.3");
   assert.equal(index.totalLines, 77198);
   assert.equal(index.routes.length, 4);
   assert.equal(
@@ -762,7 +832,7 @@ test("ships a complete lazy-loaded corpus concordance", async () => {
   assert.equal(index.concordance.schema, "wa2-public-concordance/1");
   assert.equal(index.concordance.totalLines, 77198);
   assert.equal(primary.schema, "wa2-public-concordance/1");
-  assert.equal(primary.version, "1.3.2");
+  assert.equal(primary.version, "1.3.3");
   assert.equal(primary.totalLines, 77198);
   assert.deepEqual(primary.fields, [
     "ref",
