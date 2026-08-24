@@ -1348,6 +1348,7 @@ footer {
 .edition-label {
   min-width: 0;
   flex: 0 1 auto;
+  margin-left: auto;
   color: var(--ice-ink);
   font-family: var(--mono);
   font-size: 10px;

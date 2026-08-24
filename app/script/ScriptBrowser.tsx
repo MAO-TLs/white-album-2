@@ -533,20 +533,6 @@ export function ScriptBrowser() {
   }, []);
 
   const routes = index?.routes ?? routeFallbacks;
-  const comparisonSourceLabels = useMemo(
-    () =>
-      new Map(
-        (index?.comparison?.sources ?? []).map((source) => [
-          source.id,
-          source.label,
-        ]),
-      ),
-    [index],
-  );
-  const comparisonLabel = (sourceId?: string) =>
-    (sourceId ? comparisonSourceLabels.get(sourceId) : undefined) ??
-    index?.comparison?.label ??
-    "Previous English";
   const totalLineLabel = index?.totalLines.toLocaleString() ?? "77,198";
   const totalScriptCount =
     index?.routes.reduce((sum, route) => sum + route.scripts.length, 0) ?? 254;
@@ -1551,9 +1537,7 @@ export function ScriptBrowser() {
                       <div className="line-cell line-en line-todokanai">
                         <div className="line-cell-heading">
                           <span className="speaker">{line.speakerEn}</span>
-                          <span className="edition-label">
-                            {comparisonLabel(todokanaiLine?.sourceId)}
-                          </span>
+                          <span className="edition-label">Todokanai TL</span>
                         </div>
                         {todokanaiLine?.english ? (
                           errorFindings.length ? (
@@ -1793,7 +1777,7 @@ export function ScriptBrowser() {
                                 <div className="line-cell-heading">
                                   <span className="speaker">{speakerEn}</span>
                                   <span className="edition-label">
-                                    {comparisonLabel(comparisonLine?.[3])}
+                                    Todokanai TL
                                   </span>
                                 </div>
                                 {comparisonLine?.[1] ? (

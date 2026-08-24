@@ -1435,6 +1435,20 @@ test("ships the optional aligned Todokanai TL comparison separately", async () =
   );
 });
 
+test("reader edition labels follow the shared two-column and comparison contract", async () => {
+  const [reader, readerStyles] = await Promise.all([
+    readFile(new URL("../app/script/ScriptBrowser.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(reader, /comparisonVisible \? \([\s\S]*?Japanese[\s\S]*?\) : null/);
+  assert.match(reader, /comparisonVisible \? \([\s\S]*?MAO English[\s\S]*?\) : null/);
+  assert.match(reader, /<span className="edition-label">Todokanai TL<\/span>/);
+  assert.doesNotMatch(reader, /comparisonLabel\(/);
+  assert.doesNotMatch(reader, /Japanese source|MAO English v\d/i);
+  assert.match(readerStyles, /\.edition-label \{[\s\S]*?margin-left: auto;/);
+});
+
 test("includes GitHub Pages metadata assets", async () => {
   await Promise.all([
     stat(new URL(".nojekyll", exportRoot)),
