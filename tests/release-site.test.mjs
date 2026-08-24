@@ -26,7 +26,7 @@ test("exports the release, script, and audit pages", async () => {
 
   assert.ok(home.includes("<h1>WHITE<br/>ALBUM 2</h1>"));
   assert.match(home, /release-label">Version/i);
-  assert.match(home, /v1\.3\.3/i);
+  assert.match(home, /v1\.3\.5/i);
   assert.match(home, /WHITE ALBUM 2 Special Contents/i);
   assert.doesNotMatch(home, /Mini After Story|Coming soon/i);
   assert.match(home, /Project Lead/i);
@@ -46,11 +46,11 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(home, /native Windows gameplay has not been locally/i);
   assert.match(
     home,
-    /White_Album_2_Complete_English_Release_v1\.3\.3\.zip/i,
+    /White_Album_2_Complete_English_Release_v1\.3\.5\.zip/i,
   );
   assert.match(
     home,
-    /e90940d3ffaa31564492585c4b92338708abc2e82f3275bc34093736a79b27ac/i,
+    /4e2ae5319be339c33b3ca8aa02dd91c4b1d89f9a8f8e2347776676550771dcad/i,
   );
   assert.match(home, /capped at 55[\s\S]*three lines/i);
   assert.match(home, /Launch WHITE ALBUM 2\.command/i);
@@ -68,7 +68,7 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(home, /wa2-winter-night-960\.webp/i);
   assert.match(home, /wa2-winter-night\.webp/i);
   assert.match(script, /Script browser/i);
-  assert.match(script, /Script Version v1\.3\.3/i);
+  assert.match(script, /Script Version v1\.3\.5/i);
   assert.match(script, /77,198/i);
   assert.doesNotMatch(script, /including every Special Contents script/i);
   assert.match(audit, /Todokanai TL audit/i);
@@ -161,7 +161,7 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(notFound, /href=["']\/white-album-2\/audit\/["']/i);
 });
 
-test("publishes the inherited repairs through the v1.3.3 corrections", async () => {
+test("publishes the inherited repairs through the v1.3.5 corrections", async () => {
   const payloads = await Promise.all(
     ["intro-1006", "closing-2005", "closing-2012", "closing-2507", "coda-3210"].map(
       (name) =>
@@ -355,6 +355,58 @@ test("publishes the inherited repairs through the v1.3.3 corrections", async () 
     v133Lines.get("wa2mas:digital_novel_5100:5102:46"),
     /conversation had grown too barren even for them/,
   );
+
+  const v135Payloads = await Promise.all(
+    [
+      "closing-2411",
+      "closing-2412",
+      "coda-3001",
+      "coda-3901",
+      "coda-3901_2",
+      "special-4009",
+    ].map((name) =>
+      readFile(new URL(`script-data/${name}.json`, exportRoot), "utf8").then(
+        JSON.parse,
+      ),
+    ),
+  );
+  const v135Lines = new Map(
+    v135Payloads.flatMap((payload) => payload.lines).map((line) => [line.ref, line.english]),
+  );
+  const expectedV135 = {
+    "wa2:coda:3001:54": "So now, instead of the old “vast but controlled” workload, I’ve got a vast, chaotic mountain of work in front of me.",
+    "wa2:cc:2411:1070": "Even talking about the weather isn’t boring. No—the pleasure is in being able to share a boring conversation again.",
+    "wa2:cc:2411:1071": "Three hours have passed since I met Setsuna just after noon. Three gentle hours, unbroken as a miracle.",
+    "wa2:cc:2411:1123": "By now, neither of us can tell whether the red soaking us came from Setsuna or from me.",
+    "wa2:cc:2412:31": "Watos hasn’t been doing much lately.\nInstead, Chiaki seems to be auditioning\nfor every major theater company she can find.",
+    "wa2:cc:2412:41": "The problem is, she really does have talent.\nIt can blow every common-sense lecture of mine away without even trying.",
+    "wa2:cc:2412:51": "…all while pressing both my open hands against her chest.",
+    "wa2:cc:2412:52": "With that kind of “promise” in force,\nI can’t even dodge the question.",
+    "wa2:cc:2412:56": "Even so, our “promise” is still going strong.",
+    "wa2:cc:2412:64": "But ever since “that day,”\nit’s been Chiaki’s signature move instead.",
+    "wa2:cc:2412:65": "Because in this kind of game,\nI never stand a chance against her…",
+    "wa2:cc:2412:70": "Besides, I already feel that way. I just haven’t said it aloud…",
+    "wa2:cc:2412:73": "And then the pet cat, knowing she’ll never be cast aside again,\nsuddenly bares herself to me.",
+    "wa2:coda:3901:27": "It is the very opposite of all her bold talk of stealing me away and having me make love to her.",
+    "wa2:coda:3901:33": "She says and does outrageous things. Everything about her—her looks, her position, her manner—is eccentric to the core.",
+    "wa2:coda:3901:37": "In the end, she’s a coward who always falters at the last possible moment. A timid little thing, almost endearingly so.",
+    "wa2:coda:3901:38": "I know her so well it makes me want to cry.",
+    "wa2:coda:3901:48": "Before I know it, I reach up with my now-free right hand and touch Kazusa’s cheek.",
+    "wa2:coda:3901:49": "But that hand is only a decoy. While it holds her attention, my left hand closes around the back of her head and pulls her to me…",
+    "wa2:coda:3901:193": "The moment the tip of my cock presses against Kazusa’s entrance…",
+    "wa2:coda:3901_2:27": "It is the very opposite of all her bold talk of stealing me away and having me make love to her.",
+    "wa2:coda:3901_2:33": "She says and does outrageous things. Everything about her—her looks, her position, her manner—is eccentric to the core.",
+    "wa2:coda:3901_2:37": "In the end, she’s a coward who always falters at the last possible moment. A timid little thing, almost endearingly so.",
+    "wa2:coda:3901_2:38": "I know her so well it makes me want to cry.",
+    "wa2:coda:3901_2:48": "Before I know it, I reach up with my now-free right hand and touch Kazusa’s cheek.",
+    "wa2:coda:3901_2:49": "But that hand is only a decoy. While it holds her attention, my left hand closes around the back of her head and pulls her to me…",
+    "wa2:coda:3901_2:193": "The moment the tip of my cock presses against Kazusa’s entrance…",
+    "wa2mas:kazusa_normal_extra:4009:303": "And now I’m lying to her. Fine? Who am I kidding? I’m not all right at all…",
+  };
+  assert.equal(Object.keys(expectedV135).length, 28);
+  for (const [ref, expected] of Object.entries(expectedV135)) {
+    assert.equal(v135Lines.get(ref), expected, ref);
+  }
 });
 
 test("releases the one-time install fragment after navigation", async () => {
@@ -709,7 +761,7 @@ test("ships the full clean public script index", async () => {
   const indexPath = new URL("script-data/index.json", exportRoot);
   const index = JSON.parse(await readFile(indexPath, "utf8"));
 
-  assert.equal(index.version, "1.3.3");
+  assert.equal(index.version, "1.3.5");
   assert.equal(index.totalLines, 77198);
   assert.equal(index.routes.length, 4);
   assert.equal(
@@ -832,7 +884,7 @@ test("ships a complete lazy-loaded corpus concordance", async () => {
   assert.equal(index.concordance.schema, "wa2-public-concordance/1");
   assert.equal(index.concordance.totalLines, 77198);
   assert.equal(primary.schema, "wa2-public-concordance/1");
-  assert.equal(primary.version, "1.3.3");
+  assert.equal(primary.version, "1.3.5");
   assert.equal(primary.totalLines, 77198);
   assert.deepEqual(primary.fields, [
     "ref",
