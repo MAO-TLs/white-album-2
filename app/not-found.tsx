@@ -25,7 +25,7 @@ export default function NotFound() {
               className="button button-secondary"
               href="/white-album-2/script/"
             >
-              Read the script
+              Script
             </a>
           </div>
         </div>

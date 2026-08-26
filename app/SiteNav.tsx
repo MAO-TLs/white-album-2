@@ -27,7 +27,7 @@ export function SiteNav({
           href={scriptHref}
           aria-current={currentPage === "script" ? "page" : undefined}
         >
-          Read the script
+          Script
         </a>
         <a
           href={auditHref}

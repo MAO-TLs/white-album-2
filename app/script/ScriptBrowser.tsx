@@ -132,6 +132,17 @@ type TodokanaiErrorIndex = {
   dossierLabels?: Record<string, string>;
   concordanceFile: string;
   dossierFile: string;
+  routes: {
+    id: string;
+    label: string;
+    findingCount: number;
+    scripts: {
+      id: string;
+      file: string;
+      lineCount: number;
+      findingCount: number;
+    }[];
+  }[];
 };
 
 type TodokanaiDossierLink = {
@@ -538,6 +549,9 @@ export function ScriptBrowser() {
     index?.routes.reduce((sum, route) => sum + route.scripts.length, 0) ?? 254;
   const selectedRoute =
     routes.find((route) => route.id === routeId) ?? routes[0];
+  const selectedScript = selectedRoute?.scripts.find(
+    (script) => script.id === scriptId,
+  );
   const orderedScripts = routes.flatMap((route) =>
     route.scripts.map((script) => ({
       routeId: route.id,
@@ -748,7 +762,7 @@ export function ScriptBrowser() {
   }, [searchScope, selectedRoute, scriptId, showTodokanai]);
 
   useEffect(() => {
-    if (!showTodokanaiErrors || todokanaiErrorIndex) return;
+    if (!index || todokanaiErrorIndex) return;
 
     const controller = new AbortController();
     fetch("../todokanai-errors/index.json", { signal: controller.signal })
@@ -777,7 +791,7 @@ export function ScriptBrowser() {
       });
 
     return () => controller.abort();
-  }, [index, showTodokanaiErrors, todokanaiErrorIndex]);
+  }, [index, todokanaiErrorIndex]);
 
   useEffect(() => {
     if (!showTodokanaiErrors || searchScope !== "script") return;
@@ -1213,38 +1227,32 @@ export function ScriptBrowser() {
     comparisonVisible &&
     showTodokanaiErrors &&
     activeTodokanaiErrorPayload !== null;
-  const comparisonStatus = !showTodokanai
-    ? "Off by default"
-    : searchScope === "corpus"
-      ? !hasCorpusQuery
-        ? "Comparison loads when you search"
-        : todokanaiConcordanceError
-          ? todokanaiConcordanceError
-          : todokanaiAlignmentFailed
-            ? "Comparison concordance failed its alignment check."
-            : todokanaiConcordanceAligned
-              ? `${index?.comparison?.availableEnglishLines.toLocaleString() ?? "0"} of ${index?.totalLines.toLocaleString() ?? "0"} lines available across the corpus`
-              : "Loading comparison concordance…"
-      : todokanaiError
+  const indexedErrorScript = todokanaiErrorIndex?.routes
+    .find((route) => route.id === selectedRoute?.id)
+    ?.scripts.find((script) => script.id === scriptId);
+  const comparisonStatus =
+    showTodokanai && searchScope === "corpus" && hasCorpusQuery
+      ? todokanaiConcordanceError
+        ? todokanaiConcordanceError
+        : todokanaiAlignmentFailed
+          ? "Comparison concordance failed its alignment check."
+          : `${index?.comparison?.availableEnglishLines.toLocaleString() ?? "0"} of ${index?.totalLines.toLocaleString() ?? "0"} lines available across the corpus`
+      : showTodokanai && searchScope === "script" && todokanaiError
         ? todokanaiError
-        : activeTodokanaiPayload
-          ? `${activeTodokanaiPayload.availableCount.toLocaleString()} of ${activeTodokanaiPayload.lineCount.toLocaleString()} lines available in this script`
-          : "Loading comparison…";
-  const editorialStatus = !showTodokanaiErrors
-    ? "Off by default"
-    : todokanaiEditorialError
+        : searchScope === "script" && selectedScript
+          ? `${(selectedScript.comparisonAvailableCount ?? 0).toLocaleString()} of ${selectedScript.lineCount.toLocaleString()} lines available in this script`
+          : `${index?.comparison?.availableEnglishLines.toLocaleString() ?? "0"} of ${index?.totalLines.toLocaleString() ?? "0"} lines available across the corpus`;
+  const indexedFindingCount = indexedErrorScript?.findingCount ?? 0;
+  const editorialStatus =
+    showTodokanaiErrors && todokanaiEditorialError
       ? todokanaiEditorialError
-      : searchScope === "script" && activeTodokanaiErrorPayload
-        ? `${activeTodokanaiErrorPayload.findingCount.toLocaleString()} adjudicated error${
-            activeTodokanaiErrorPayload.findingCount === 1 ? "" : "s"
+      : searchScope === "script" && indexedErrorScript
+        ? `${indexedFindingCount.toLocaleString()} adjudicated error${
+            indexedFindingCount === 1 ? "" : "s"
           } in this script`
-        : searchScope === "corpus" && hasCorpusQuery
-          ? todokanaiErrorConcordance
-            ? `${todokanaiErrorConcordance.totalFindings.toLocaleString()} adjudicated findings available`
-            : "Loading editorial notes…"
-          : todokanaiErrorIndex
-            ? `${todokanaiErrorIndex.totalFindings.toLocaleString()} findings in ${todokanaiErrorIndex.auditedLineCount.toLocaleString()} reviewed lines`
-            : "Loading editorial index…";
+        : todokanaiErrorIndex
+          ? `${todokanaiErrorIndex.totalFindings.toLocaleString()} findings in ${todokanaiErrorIndex.auditedLineCount.toLocaleString()} reviewed lines`
+          : "Loading editorial index…";
 
   const resultStatus =
     searchScope === "script"

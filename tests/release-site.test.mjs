@@ -84,7 +84,7 @@ test("exports the release, script, and audit pages", async () => {
   ].map(primaryNav);
   for (const nav of [homeNav, scriptNav, auditNav, notFoundNav]) {
     assert.match(nav, />Release</i);
-    assert.match(nav, />Read the script</i);
+    assert.match(nav, />Script</i);
     assert.match(nav, />Audit</i);
     assert.match(nav, />GitHub</i);
     assert.match(
@@ -99,9 +99,9 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(scriptNav, /href=["']\.\.\/["'][^>]*>Release</i);
   assert.match(
     scriptNav,
-    /href=["']\.\/["'] aria-current="page"[^>]*>Read the script/i,
+    /href=["']\.\/["'] aria-current="page"[^>]*>Script/i,
   );
-  assert.match(auditNav, /href=["']\.\.[/]script\/["'][^>]*>Read the script/i);
+  assert.match(auditNav, /href=["']\.\.[/]script\/["'][^>]*>Script/i);
   assert.match(
     auditNav,
     /href=["']\.\/["'] aria-current="page"[^>]*>Audit/i,
@@ -112,7 +112,7 @@ test("exports the release, script, and audit pages", async () => {
   );
   assert.match(
     notFoundNav,
-    /href=["']\/white-album-2\/script\/["'][^>]*>Read the script/i,
+    /href=["']\/white-album-2\/script\/["'][^>]*>Script/i,
   );
   assert.match(
     notFoundNav,
@@ -460,6 +460,9 @@ test("keeps full-corpus search lazy, shareable, and navigable", async () => {
   );
   assert.match(source, /setTodokanaiConcordance\(null\)/);
   assert.match(source, /Display Todokanai TL errors/i);
+  assert.doesNotMatch(source, /Off by default/i);
+  assert.match(source, /lines available in this script/i);
+  assert.match(source, /adjudicated error/);
   assert.match(source, /className="reader-shell shell compact"/);
   assert.doesNotMatch(source, /Compact line spacing|compactMode/);
   assert.match(source, /function JapaneseRubyText/);

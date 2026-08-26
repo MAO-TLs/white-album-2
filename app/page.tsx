@@ -59,7 +59,7 @@ export default function Home() {
                 <span aria-hidden="true">↓</span>
               </a>
               <a className="button button-secondary" href="./script/">
-                Read the script
+                Script
                 <span aria-hidden="true">→</span>
               </a>
             </div>
