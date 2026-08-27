@@ -623,7 +623,7 @@ footer {
   z-index: 5;
   top: 0;
   display: grid;
-  grid-template-columns: 1fr 1.2fr 1.15fr 1.55fr auto;
+  grid-template-columns: 1.2fr 1.15fr 1.55fr auto;
   gap: 14px;
   padding: 18px;
   border: 1px solid var(--line);

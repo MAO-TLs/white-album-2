@@ -592,24 +592,6 @@ export function ScriptBrowser() {
       ? todokanaiErrorPayload
       : null;
 
-  function selectRoute(nextRouteId: string) {
-    const nextRoute = routes.find((route) => route.id === nextRouteId);
-    setTodokanaiError("");
-    setTodokanaiEditorialError("");
-    setActiveTodokanaiErrorId("");
-    setPendingRef("");
-    setRouteId(nextRouteId);
-    if (nextRoute?.scripts[0]) setScriptId(nextRoute.scripts[0].id);
-  }
-
-  function selectScript(nextScriptId: string) {
-    setTodokanaiError("");
-    setTodokanaiEditorialError("");
-    setActiveTodokanaiErrorId("");
-    setPendingRef("");
-    setScriptId(nextScriptId);
-  }
-
   function selectScriptLocation(nextRouteId: string, nextScriptId: string) {
     setTodokanaiError("");
     setTodokanaiEditorialError("");
@@ -1281,22 +1263,6 @@ export function ScriptBrowser() {
     <section className="reader-shell shell compact">
       <div className="reader-controls" id="reader-controls">
         <div className="control">
-          <label htmlFor="route">Section</label>
-          <select
-            id="route"
-            value={routeId}
-            disabled={searchScope === "corpus"}
-            onChange={(event) => selectRoute(event.target.value)}
-          >
-            {routes.map((route) => (
-              <option key={route.id} value={route.id}>
-                {route.label}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="control">
           <label htmlFor="script">Script</label>
           <div className="script-picker">
             <button
@@ -1321,14 +1287,21 @@ export function ScriptBrowser() {
             </button>
             <select
               id="script"
-              value={scriptId}
+              value={`${routeId}::${scriptId}`}
               disabled={searchScope === "corpus"}
-              onChange={(event) => selectScript(event.target.value)}
+              onChange={(event) => {
+                const [nextRouteId, nextScriptId] = event.target.value.split("::");
+                selectScriptLocation(nextRouteId, nextScriptId);
+              }}
             >
-              {(selectedRoute?.scripts ?? []).map((script) => (
-                <option key={script.id} value={script.id}>
-                  {script.id} · {script.lineCount.toLocaleString()} lines
-                </option>
+              {routes.map((route) => (
+                <optgroup key={route.id} label={route.label}>
+                  {route.scripts.map((script) => (
+                    <option key={`${route.id}:${script.id}`} value={`${route.id}::${script.id}`}>
+                      {script.id} · {script.lineCount.toLocaleString()} lines
+                    </option>
+                  ))}
+                </optgroup>
               ))}
             </select>
             <button
@@ -1362,7 +1335,7 @@ export function ScriptBrowser() {
                 checked={searchScope === "script"}
                 onChange={() => selectSearchScope("script")}
               />
-              <span>This script</span>
+              <span>Current script</span>
             </label>
             <label>
               <input
@@ -1378,16 +1351,12 @@ export function ScriptBrowser() {
         </fieldset>
 
         <div className="control">
-          <label htmlFor="search">
-            {searchScope === "corpus"
-              ? `Search all ${totalLineLabel} lines`
-              : "Search this script"}
-          </label>
+          <label htmlFor="search">Search</label>
           <input
             id="search"
             type="search"
             value={query}
-            placeholder="English, 日本語, speaker, or wa2:/wa2mas: ref"
+            placeholder="English, Japanese, speaker, ref…"
             aria-controls={
               searchScope === "corpus"
                 ? "concordance-results"

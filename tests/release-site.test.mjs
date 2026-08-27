@@ -128,6 +128,10 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(script, /Display Todokanai TL for comparison/i);
   assert.match(script, /Search scope/i);
   assert.match(script, /All scripts/i);
+  assert.match(script, /Current script/i);
+  assert.match(script, /<label for="search">Search<\/label>/);
+  assert.match(script, /English, Japanese, speaker, ref…/);
+  assert.doesNotMatch(script, /<label for="route">Section<\/label>/);
   assert.match(script, /77,198-line corpus/i);
   assert.match(script, /Todokanai TL/i);
   assert.match(script, /not used to create or revise the MAO translation/i);
