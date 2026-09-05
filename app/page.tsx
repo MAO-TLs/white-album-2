@@ -95,19 +95,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section shell" id="whats-new">
-        <div className="section-heading">
-          <p className="eyebrow">Version 2.0.0 · GPT-6 Astra</p>
-          <h2>A closer reading, a more natural voice</h2>
-          <p>3,200 revised manuscript rows bring more natural dialogue, more faithful
-            perspective and subtext, and stronger continuity between scenes.
-            The final comparison weighed precision against rhythm and character voice.</p>
-          <p>Both digital novels, Special Contents, audio-drama subtitles, and native
-            captions have been updated. The existing movie translations are included unchanged.</p>
-          <a className="text-link" href={releaseNotesUrl}>Read the full release notes →</a>
-        </div>
-      </section>
-
       <section className="section shell">
         <div className="section-heading">
           <p className="eyebrow">Read online</p>
