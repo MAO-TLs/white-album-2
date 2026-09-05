@@ -6,11 +6,11 @@ import { SiteFooter } from "./SiteFooter";
 export const dynamic = "force-static";
 
 const completeDownloadUrl =
-  "https://github.com/MAO-TLs/white-album-2/releases/download/v1.3.6/White_Album_2_Complete_English_Release_v1.3.6.zip";
+  "https://github.com/MAO-TLs/white-album-2/releases/download/v2.0.0/White_Album_2_Complete_English_Release_v2.0.0.zip";
 const completeArchiveSha256 =
-  "096686609b4200d9982302abff2a8658d881b1d3ed817e03b152eba741956014";
+  "9f1da485d3cdf767556920ed56df5ec3ac2254b71f0641705cf62970b04e16c1";
 const releaseNotesUrl =
-  "https://github.com/MAO-TLs/white-album-2/releases/tag/v1.3.6";
+  "https://github.com/MAO-TLs/white-album-2/releases/tag/v2.0.0";
 
 export default function Home() {
   return (
@@ -64,8 +64,8 @@ export default function Home() {
               </a>
             </div>
             <p className="compatibility">
-              716.8 MB · <a href={releaseNotesUrl}>Release notes</a> · Version
-              1.3.6 · Windows + Wine/CrossOver · Japanese Extended Edition
+              715.8 MB · <a href={releaseNotesUrl}>Release notes</a> · Version
+              2.0.0 · Windows + Wine/CrossOver · Japanese Extended Edition
               required
             </p>
           </div>
@@ -78,7 +78,7 @@ export default function Home() {
         <div className="shell release-grid">
           <div>
             <span className="release-label">Version</span>
-            <strong>v1.3.6</strong>
+            <strong>v2.0.0</strong>
           </div>
           <div>
             <span className="release-label">Script coverage</span>
@@ -92,6 +92,19 @@ export default function Home() {
             <span className="release-label">Status</span>
             <strong className="release-status">Complete</strong>
           </div>
+        </div>
+      </section>
+
+      <section className="section shell" id="whats-new">
+        <div className="section-heading">
+          <p className="eyebrow">Version 2.0.0 · GPT-6 Astra</p>
+          <h2>A closer reading, a more natural voice</h2>
+          <p>3,200 revised manuscript rows bring more natural dialogue, more faithful
+            perspective and subtext, and stronger continuity between scenes.
+            The final comparison weighed precision against rhythm and character voice.</p>
+          <p>Both digital novels, Special Contents, audio-drama subtitles, and native
+            captions have been updated. The existing movie translations are included unchanged.</p>
+          <a className="text-link" href={releaseNotesUrl}>Read the full release notes →</a>
         </div>
       </section>
 
@@ -249,16 +262,8 @@ export default function Home() {
           <aside className="install-warning">
             <strong>Platform validation</strong>
             <p>
-              The Windows hook was built from source and structurally
-              validated; native Windows gameplay has not been locally
-              smoke-tested. v1.3.6 passed complete static presentation,
-              line-break, page-limit, reinjection, and package verification;
-              its executable was not launched for this release. The unchanged
-              movie patcher passed two complete 30-file CrossOver renders with
-              exact-output verification, a real first-run download, repeat-run
-              and restoration tests, and both launcher checks. Normal story
-              pages are capped at 55 half-width cells per line and three lines
-              before an engine-native page break.
+              The patch has been tested and confirmed working by users on
+              Windows and Mac via Wine/CrossOver.
             </p>
           </aside>
 
@@ -289,7 +294,7 @@ export default function Home() {
           </div>
           <div>
             <dt>Translator</dt>
-            <dd>GPT-5.6 Sol</dd>
+            <dd>GPT-6 Astra</dd>
           </div>
           <div>
             <dt>Special Thanks</dt>

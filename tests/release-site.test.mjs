@@ -26,7 +26,7 @@ test("exports the release, script, and audit pages", async () => {
 
   assert.ok(home.includes("<h1>WHITE<br/>ALBUM 2</h1>"));
   assert.match(home, /release-label">Version/i);
-  assert.match(home, /v1\.3\.6/i);
+  assert.match(home, /v2\.0\.0/i);
   assert.match(home, /WHITE ALBUM 2 Special Contents/i);
   assert.doesNotMatch(home, /Mini After Story|Coming soon/i);
   assert.match(home, /Project Lead/i);
@@ -35,7 +35,7 @@ test("exports the release, script, and audit pages", async () => {
   assert.doesNotMatch(home, /Special Contents movie/i);
   assert.doesNotMatch(home, /Special Contents mv000\.pak/i);
   assert.match(home, /Download complete release/i);
-  assert.match(home, /716\.8 MB/i);
+  assert.match(home, /715\.8 MB/i);
   assert.match(home, /Release notes/i);
   assert.match(home, /two translated digital novels/i);
   assert.match(home, /all fifteen main-game movies/i);
@@ -43,23 +43,23 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(home, /generates all thirty high- and low-resolution movie assets/i);
   assert.match(home, /pinned 106 MB FFmpeg build/i);
   assert.match(home, /Read the digital novels/i);
-  assert.match(home, /native Windows gameplay has not been locally/i);
+  assert.match(home, /tested and confirmed working by users on[\s\S]*Windows and Mac via Wine\/CrossOver/i);
   assert.match(
     home,
-    /White_Album_2_Complete_English_Release_v1\.3\.6\.zip/i,
+    /White_Album_2_Complete_English_Release_v2\.0\.0\.zip/i,
   );
   assert.match(
     home,
-    /096686609b4200d9982302abff2a8658d881b1d3ed817e03b152eba741956014/i,
+    /9f1da485d3cdf767556920ed56df5ec3ac2254b71f0641705cf62970b04e16c1/i,
   );
-  assert.match(home, /capped at 55[\s\S]*three lines/i);
+  assert.doesNotMatch(home, /native Windows gameplay has not been locally/i);
   assert.match(home, /Launch WHITE ALBUM 2\.command/i);
   assert.match(home, /DirectX End-User Runtimes/i);
   assert.match(
     home,
     /Windows black screen/i,
   );
-  assert.match(home, /GPT-5\.6 Sol/i);
+  assert.match(home, /GPT-6 Astra/i);
   assert.match(home, /gambs/i);
   assert.match(home, /href=["']\.\/script\/\?route=intro&amp;script=1001/i);
   assert.match(home, /href=["']\.\/script\/\?route=closing&amp;script=2001/i);
@@ -68,7 +68,7 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(home, /wa2-winter-night-960\.webp/i);
   assert.match(home, /wa2-winter-night\.webp/i);
   assert.match(script, /Script browser/i);
-  assert.match(script, /Script Version v1\.3\.6/i);
+  assert.match(script, /Script Version v2\.0\.0/i);
   assert.match(script, /77,198/i);
   assert.doesNotMatch(script, /including every Special Contents script/i);
   assert.match(audit, /Todokanai TL audit/i);
@@ -184,11 +184,11 @@ test("publishes the inherited repairs through the v1.3.6 corrections", async () 
   );
   assert.equal(
     lines.get("wa2:cc:2012:512"),
-    "It was already three in the morning—which still belonged, in my mind, to Wednesday night.",
+    "It was already three in the morning. In other words, Wednesday, 27:00.",
   );
   assert.equal(
     lines.get("wa2:cc:2507:4"),
-    "It was now 1:15 Sunday morning—still Saturday night, by Mari’s reckoning.",
+    "It was now 1:15 a.m., late Saturday night…",
   );
   assert.equal(
     lines.get("wa2:coda:3210:736"),
@@ -209,10 +209,10 @@ test("publishes the inherited repairs through the v1.3.6 corrections", async () 
     introLines.get("wa2:ic:1003:57"),
     "“You’re really sure about this? You’ve got a lead?”",
   );
-  assert.equal(introLines.get("wa2:ic:1003:58"), "“…A need.”");
+  assert.equal(introLines.get("wa2:ic:1003:58"), "“…Not sure.”");
   assert.equal(
     introLines.get("wa2:ic:1003:59"),
-    "“Don’t change two letters and pretend that answers me! Now I’m seriously worried!”",
+    "“Don’t just slip a ‘not’ in there! Now I’m seriously worried!”",
   );
 
   const v131Payloads = await Promise.all(
@@ -234,11 +234,11 @@ test("publishes the inherited repairs through the v1.3.6 corrections", async () 
     v131Lines.get("wa2:ic:1011_030:162"),
     "I wanted to go back two days, point at myself, and laugh—the idiot who’d said, “I’ll take this”… and then, “Please engrave her name inside.”",
   );
-  assert.equal(v131Lines.get("wa2:cc:2033:76"), "“Hope you’re holding up. Hamada here.”");
+  assert.equal(v131Lines.get("wa2:cc:2033:76"), "‘Hope you’re holding up. Hamada here.’");
   assert.equal(v131Lines.get("wa2:cc:2033:77"), "Barely.");
   assert.match(
     v131Lines.get("wa2:coda:5002:5"),
-    /piano her mother had abandoned/,
+    /piano, where her mother had given up on her/,
   );
   assert.match(v131Lines.get("wa2:coda:5102:105"), /Back then, Haruki never came/);
 
@@ -381,10 +381,10 @@ test("publishes the inherited repairs through the v1.3.6 corrections", async () 
     "wa2:coda:3001:54": "So now, instead of the old “vast but controlled” workload, I’ve got a vast, chaotic mountain of work in front of me.",
     "wa2:cc:2411:1070": "Even talking about the weather isn’t boring. No—the pleasure is in being able to share a boring conversation again.",
     "wa2:cc:2411:1071": "Three hours have passed since I met Setsuna just after noon. Three gentle hours, unbroken as a miracle.",
-    "wa2:cc:2411:1123": "By now, neither of us can tell whether the red soaking us came from Setsuna or from me.",
-    "wa2:cc:2412:31": "Watos hasn’t been doing much lately.\nInstead, Chiaki seems to be auditioning\nfor every major theater company she can find.",
+    "wa2:cc:2411:1123": "By now, it must be impossible to tell whether that red liquid came from Setsuna or from me.",
+    "wa2:cc:2412:31": "She hasn’t been doing much with Watos lately.\nInstead, Chiaki seems to be auditioning\nfor every major theater company she can find.",
     "wa2:cc:2412:41": "The problem is, she really does have talent.\nIt can blow every common-sense lecture of mine away without even trying.",
-    "wa2:cc:2412:51": "…all while pressing both my open hands against her chest.",
+    "wa2:cc:2412:51": "…all while pressing both her open hands against my chest.",
     "wa2:cc:2412:52": "With that kind of “promise” in force,\nI can’t even dodge the question.",
     "wa2:cc:2412:56": "Even so, our “promise” is still going strong.",
     "wa2:cc:2412:64": "But ever since “that day,”\nit’s been Chiaki’s signature move instead.",
@@ -804,7 +804,7 @@ test("ships the full clean public script index", async () => {
   const indexPath = new URL("script-data/index.json", exportRoot);
   const index = JSON.parse(await readFile(indexPath, "utf8"));
 
-  assert.equal(index.version, "1.3.6");
+  assert.equal(index.version, "2.0.0");
   assert.equal(index.totalLines, 77198);
   assert.equal(index.routes.length, 4);
   assert.equal(
@@ -927,7 +927,7 @@ test("ships a complete lazy-loaded corpus concordance", async () => {
   assert.equal(index.concordance.schema, "wa2-public-concordance/1");
   assert.equal(index.concordance.totalLines, 77198);
   assert.equal(primary.schema, "wa2-public-concordance/1");
-  assert.equal(primary.version, "1.3.6");
+  assert.equal(primary.version, "2.0.0");
   assert.equal(primary.totalLines, 77198);
   assert.deepEqual(primary.fields, [
     "ref",

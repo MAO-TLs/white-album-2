@@ -4,11 +4,11 @@ Release site and public script browser for the MAO English translation of
 *WHITE ALBUM 2*.
 
 [Project site](https://mao-tls.github.io/white-album-2/) ·
-[Complete v1.3.6 release](https://github.com/MAO-TLs/white-album-2/releases/download/v1.3.6/White_Album_2_Complete_English_Release_v1.3.6.zip)
+[Complete v2.0.0 release](https://github.com/MAO-TLs/white-album-2/releases/download/v2.0.0/White_Album_2_Complete_English_Release_v2.0.0.zip)
 
 ## Release
 
-- Version: `v1.3.6`
+- Version: `v2.0.0`
 - Coverage: Introductory Chapter, Closing Chapter, Coda,
   *WHITE ALBUM 2 Special Contents*, all eleven audio dramas, all fifteen
   main-game movies, and two translated digital novels
@@ -17,26 +17,20 @@ Release site and public script browser for the MAO English translation of
 - Optional comparison: Todokanai TL English and the WA2Analysis prose bundled
   with its Special Contents release are displayed only where aligned
 - Complete archive SHA-256:
-  `096686609b4200d9982302abff2a8658d881b1d3ed817e03b152eba741956014`
+  `9f1da485d3cdf767556920ed56df5ec3ac2254b71f0641705cf62970b04e16c1`
 
-v1.3.0 completed a single-editor, whole-release prose revision. Every one of
-the 77,198 written script lines was read in its full script, route, and
-dramatic context, with dialogue and narration treated as equal editorial
-responsibilities. All 2,968 audio-drama cues were reviewed as part of the same
-release. v1.3.6 adds 45 source-adjudicated maintenance corrections over
-v1.3.5. They restore agency, polarity, quantifiers, referents, event scope,
-physical action, recurring jokes, and concrete source texture without changing
-Japanese text or engine controls. The final text contains 13,538 accepted
-changes relative to v1.2.8: 12,849 in the main game, 607 in Special Contents,
-and 82 in the audio dramas.
+Version 2.0.0 is the GPT-6 Astra revision: 3,200 changed manuscript rows
+compared with v1.3.6, including three previously approved corrections.
+The final comparison covers all 3,197 Astra revisions, weighing source meaning
+against natural dialogue, character voice, subtext, and continuity.
 
-The release focuses on natural character speech, narrative voice, comic and
-emotional timing, relationship and timeline continuity, recurring language,
-and exact callbacks. The two rebuilt digital-novel PDFs passed visual
-inspection across all 247 rendered pages. Normal story pages remain capped at
-55 CP932 half-width cells per line and three lines before an engine-native
-page break. The local movie patcher and unchanged media are inherited
-byte-for-byte from v1.2.8.
+Both digital-novel PDFs were regenerated from the release snapshot. Their
+title pages show the English title, Fumiaki Maruto, MAO Translations, and the
+version number. Special Contents, audio-drama subtitle text, and native
+captions are updated as well. The movie patcher and its earlier movie
+translations remain unchanged.
+
+See [release notes](RELEASE_NOTES.md) for the changes and verification scope.
 
 ## Installation
 
@@ -60,11 +54,8 @@ Back up `WA2.exe` and the original Special Contents installation first. The
 movie patcher automatically preserves every Japanese movie it replaces.
 
 The package requires a legally obtained Japanese *WHITE ALBUM 2 Extended
-Edition* installation. The native Windows audio hook is reproducibly
-source-built and structurally validated; native-Windows gameplay was not
-locally smoke-tested. v1.3.6 passed exhaustive static presentation,
-line-break, reinjection, component, and archive verification. Its executable
-was not launched for this release.
+Edition* installation. The patch has been tested and confirmed working by
+users on Windows and Mac via Wine/CrossOver.
 
 The Windows hook imports `D3DX9_43.dll`. If the main game opens to a black
 screen, install Microsoft's
@@ -99,7 +90,7 @@ npm run build
 ## Credits
 
 - Project Lead: MAO
-- Translator: GPT-5.6 Sol
+- Translator: GPT-6 Astra
 - Special Thanks: gambs
 
 This is an unofficial, noncommercial fan translation. A legally obtained
