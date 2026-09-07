@@ -13,7 +13,8 @@ export function SiteFooter({
     <footer>
       <div className="shell footer-inner">
         <p>
-          This is an unofficial, noncommercial fan translation. A legally
+          MAO Translations publishes unofficial, noncommercial fan translations.
+          Original works and trademarks belong to their respective owners. A legally
           obtained Japanese copy of <em>WHITE ALBUM 2 Extended Edition</em> is
           required.
         </p>
