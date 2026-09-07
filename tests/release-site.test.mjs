@@ -50,7 +50,7 @@ test("exports the release, script, and audit pages", async () => {
   );
   assert.match(
     home,
-    /9f1da485d3cdf767556920ed56df5ec3ac2254b71f0641705cf62970b04e16c1/i,
+    /<p>A legally obtained Japanese copy of <em>WHITE ALBUM 2 Extended Edition<\/em> is required\.<\/p>/,
   );
   assert.doesNotMatch(home, /native Windows gameplay has not been locally/i);
   assert.match(home, /Launch WHITE ALBUM 2\.command/i);

@@ -1,4 +1,3 @@
-import { CopyHashButton } from "./CopyHashButton";
 import { InstallAnchorRelease } from "./InstallAnchorRelease";
 import { SiteNav } from "./SiteNav";
 import { SiteFooter } from "./SiteFooter";
@@ -7,8 +6,6 @@ export const dynamic = "force-static";
 
 const completeDownloadUrl =
   "https://github.com/MAO-TLs/white-album-2/releases/download/v2.0.0/White_Album_2_Complete_English_Release_v2.0.0.zip";
-const completeArchiveSha256 =
-  "9f1da485d3cdf767556920ed56df5ec3ac2254b71f0641705cf62970b04e16c1";
 const releaseNotesUrl =
   "https://github.com/MAO-TLs/white-album-2/releases/tag/v2.0.0";
 
@@ -290,10 +287,7 @@ export default function Home() {
         </dl>
       </section>
 
-      <SiteFooter
-        archiveSha256={completeArchiveSha256}
-        archiveHashAction={<CopyHashButton value={completeArchiveSha256} />}
-      />
+      <SiteFooter />
     </main>
   );
 }
