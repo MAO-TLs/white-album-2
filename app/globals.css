@@ -289,7 +289,7 @@ select {
 }
 
 .section {
-  padding-block: 112px;
+  padding-block: 56px;
 }
 
 .section-heading {
@@ -2029,7 +2029,7 @@ footer {
   }
 
   .section {
-    padding-block: 76px;
+    padding-block: 38px;
   }
 
   .section-heading h2 {
