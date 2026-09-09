@@ -2208,3 +2208,9 @@ footer {
     transition: none;
   }
 }
+
+/* Shared title sizing across the four MAO releases. */
+.hero h1 { font-size: clamp(76px, 9.2vw, 138px); }
+@media (max-width: 640px) {
+  .hero h1 { font-size: clamp(44px, 14vw, 82px); }
+}
