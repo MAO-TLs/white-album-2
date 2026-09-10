@@ -1263,6 +1263,15 @@ export function ScriptBrowser() {
     <section className="reader-shell shell compact">
       <div className="reader-controls" id="reader-controls">
         <div className="control">
+          <label htmlFor="chapter">Chapter</label>
+          <select id="chapter" value={routeId} disabled={searchScope === "corpus"} onChange={(event) => {
+            const route = routes.find(route => route.id === event.target.value);
+            if (route?.scripts[0]) selectScriptLocation(route.id, route.scripts[0].id);
+          }}>
+            {routes.map(route => <option key={route.id} value={route.id}>{route.label}</option>)}
+          </select>
+        </div>
+        <div className="control">
           <label htmlFor="script">Script</label>
           <div className="script-picker">
             <button
@@ -1294,7 +1303,7 @@ export function ScriptBrowser() {
                 selectScriptLocation(nextRouteId, nextScriptId);
               }}
             >
-              {routes.map((route) => (
+              {routes.filter(route => route.id === routeId).map((route) => (
                 <optgroup key={route.id} label={route.label}>
                   {route.scripts.map((script) => (
                     <option key={`${route.id}:${script.id}`} value={`${route.id}::${script.id}`}>
