@@ -603,6 +603,7 @@ footer {
   font-size: clamp(46px, 6vw, 78px);
   font-weight: 400;
   letter-spacing: -0.05em;
+  line-height: 1.02;
 }
 
 .reader-intro > p:last-of-type {
