@@ -140,9 +140,8 @@ export default function AuditPage() {
           <p className="eyebrow">Source-only editorial audit</p>
           <h1>Todokanai TL audit</h1>
           <p>
-            Every published finding was checked against the Japanese and its
-            scene context. Borderline calls were withheld, and counterexamples
-            are recorded wherever they set a useful limit on a work-wide claim.
+            Published findings are checked against the Japanese and its scene context.
+            The dossiers collect recurring patterns, with explicit limits on each claim.
           </p>
         </div>
       </header>
@@ -193,6 +192,7 @@ export default function AuditPage() {
           <header className="audit-dossiers-heading">
             <p className="eyebrow">Work-wide dossiers</p>
             <h2 id="audit-dossiers-title">Recurring failure patterns</h2>
+            <p className="audit-method-note">Dossier counts describe selected evidence, not all findings of that kind across the corpus. A passage may support more than one dossier.</p>
             <p className="audit-dossiers-evidence-count">
               {dossiers.dossierCount.toLocaleString()} dossiers
               <span aria-hidden="true"> · </span>
@@ -227,7 +227,7 @@ export default function AuditPage() {
                         <summary>
                           <div>
                             <p className="audit-dossier-count">
-                              {dossier.findingExampleCount} confirmed example
+                              {dossier.findingExampleCount} cited confirmed example
                               {dossier.findingExampleCount === 1 ? "" : "s"}
                               {dossier.supportExampleCount
                                 ? ` · ${dossier.supportExampleCount} work-wide support${
