@@ -97,7 +97,7 @@ export default function Home() {
           <p className="eyebrow">Read online</p>
           <h2>Browse the complete script</h2>
           <p>
-            Every main-game and Special Contents line is browsable beside its
+            Every main-game and <em>Special Contents</em> line is browsable beside its
             Japanese source. Search the current scene or the complete corpus,
             then jump directly to any reference.
           </p>
@@ -156,7 +156,7 @@ export default function Home() {
             <p className="install-requirement">
               Requires a legally obtained Japanese <em>WHITE ALBUM 2 Extended
               Edition</em> installation. One archive contains the native
-              Windows and Wine/CrossOver main-game builds, the translated
+              Windows and Wine/CrossOver main-game builds, the translated{" "}
               <em>Special Contents</em> application, all eleven audio dramas, and two
               translated digital novels as PDFs. A small local patcher creates
               English-subtitled versions of all fifteen main-game movies from
@@ -170,7 +170,7 @@ export default function Home() {
               <div>
                 <h3>Back up the originals</h3>
                 <p>
-                  Back up the original main game and Special Contents, or at
+                  Back up the original main game and <em>Special Contents</em>, or at
                   minimum <code>WA2.exe</code>. The movie patcher also
                   preserves the Japanese movie files it replaces.
                 </p>
