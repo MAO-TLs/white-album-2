@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile, stat } from "node:fs/promises";
@@ -26,7 +27,7 @@ test("exports the release, script, and audit pages", async () => {
 
   assert.ok(home.includes("<h1>WHITE<br/>ALBUM 2</h1>"));
   assert.match(home, /release-label">Version/i);
-  assert.match(home, /v2\.0\.0/i);
+  assert.match(home, /v2\.1\.0/i);
   assert.match(home, /WHITE ALBUM 2 Special Contents/i);
   assert.doesNotMatch(home, /Mini After Story|Coming soon/i);
   assert.match(home, /Project Lead/i);
@@ -35,7 +36,7 @@ test("exports the release, script, and audit pages", async () => {
   assert.doesNotMatch(home, /Special Contents movie/i);
   assert.doesNotMatch(home, /Special Contents mv000\.pak/i);
   assert.match(home, /Download complete release/i);
-  assert.match(home, /715\.8 MB/i);
+  assert.match(home, /715\.6 MB/i);
   assert.match(home, /Release notes/i);
   assert.match(home, /two translated digital novels/i);
   assert.match(home, /all fifteen main-game movies/i);
@@ -46,7 +47,7 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(home, /tested and confirmed working by users on[\s\S]*Windows and Mac via Wine\/CrossOver/i);
   assert.match(
     home,
-    /White_Album_2_Complete_English_Release_v2\.0\.0\.zip/i,
+    /White_Album_2_Complete_English_Release_v2\.1\.0\.zip/i,
   );
   assert.match(
     home,
@@ -68,7 +69,7 @@ test("exports the release, script, and audit pages", async () => {
   assert.match(home, /wa2-winter-night-960\.webp/i);
   assert.match(home, /wa2-winter-night\.webp/i);
   assert.match(script, /Script browser/i);
-  assert.match(script, /Script Version v2\.0\.0/i);
+  assert.match(script, /Script Version v2\.1\.0/i);
   assert.match(script, /77,198/i);
   assert.doesNotMatch(script, /including every Special Contents script/i);
   assert.match(audit, /Todokanai TL audit/i);
@@ -507,7 +508,7 @@ test("keeps full-corpus search lazy, shareable, and navigable", async () => {
   assert.doesNotMatch(source, /Compact line spacing|compactMode/);
   assert.match(source, /function JapaneseRubyText/);
   assert.match(source, /<ruby key=/);
-  assert.match(source, /<rb>\{match\[1\]\}<\/rb>/);
+  assert.match(source, /<span>\{match\[1\]\}<\/span>/);
   assert.match(source, /<rt>\{match\[2\]\.trim\(\)\}<\/rt>/);
   assert.match(source, /url\.searchParams\.get\("errors"\)/);
   assert.match(
@@ -804,7 +805,7 @@ test("ships the full clean public script index", async () => {
   const indexPath = new URL("script-data/index.json", exportRoot);
   const index = JSON.parse(await readFile(indexPath, "utf8"));
 
-  assert.equal(index.version, "2.0.0");
+  assert.equal(index.version, "2.1.0");
   assert.equal(index.totalLines, 77198);
   assert.equal(index.routes.length, 4);
   assert.equal(
@@ -927,7 +928,7 @@ test("ships a complete lazy-loaded corpus concordance", async () => {
   assert.equal(index.concordance.schema, "wa2-public-concordance/1");
   assert.equal(index.concordance.totalLines, 77198);
   assert.equal(primary.schema, "wa2-public-concordance/1");
-  assert.equal(primary.version, "2.0.0");
+  assert.equal(primary.version, "2.1.0");
   assert.equal(primary.totalLines, 77198);
   assert.deepEqual(primary.fields, [
     "ref",
@@ -937,6 +938,9 @@ test("ships a complete lazy-loaded corpus concordance", async () => {
     "japanese",
     "english",
     "japaneseRuby",
+    "whispers",
+    "audioJapanese",
+    "audioAdditions",
   ]);
   assert.equal(comparison.schema, "wa2-todokanai-concordance/1");
   assert.equal(comparison.totalLines, 77198);
@@ -945,6 +949,7 @@ test("ships a complete lazy-loaded corpus concordance", async () => {
     "english",
     "status",
     "sourceId",
+    "whispers",
   ]);
   assert.ok(primaryRaw.byteLength < 17 * 1024 * 1024);
   assert.ok(comparisonRaw.byteLength < 9 * 1024 * 1024);
@@ -984,6 +989,9 @@ test("ships a complete lazy-loaded corpus concordance", async () => {
             line.japanese,
             line.english,
             line.japaneseRuby ?? "",
+            line.whispers ?? [],
+            line.audioJapanese ?? "",
+            line.audioAdditions ?? [],
           ]);
         }),
       ),
@@ -1222,6 +1230,7 @@ test("ships the optional aligned Todokanai TL comparison separately", async () =
           "ref",
           "sourceId",
           "status",
+          ...(line.whispers ? ["whispers"] : []),
         ]);
         assert.ok(line.status in specialStatusCounts);
         specialStatusCounts[line.status] += 1;
@@ -1239,6 +1248,7 @@ test("ships the optional aligned Todokanai TL comparison separately", async () =
           "english",
           "ref",
           "status",
+          ...(line.whispers ? ["whispers"] : []),
         ]);
       }
 
@@ -1525,4 +1535,33 @@ test("retains the complete Todokanai TL license notice", async () => {
   assert.match(notice, /Redistributions in binary form must reproduce/);
   assert.match(notice, /Neither the name of the copyright holder/);
   assert.match(notice, /THIS SOFTWARE IS PROVIDED.*"AS IS"/s);
+});
+
+test("whisper spans preserve partial dialogue and audio source evidence", () => {
+  const mao = JSON.parse(readFileSync(new URL('../public/script-data/coda-3003.json', import.meta.url), 'utf8'));
+  const todo = JSON.parse(readFileSync(new URL('../public/todokanai-data/coda-3003.json', import.meta.url), 'utf8'));
+  for (const ref of ['wa2:coda:3003:616', 'wa2:coda:3003:618']) {
+    const m = mao.lines.find(l => l.ref === ref), t = todo.lines.find(l => l.ref === ref);
+    assert.equal(m.whispers.length, 1);
+    assert.equal(t.whispers.length, 1);
+    assert.ok(m.whispers[0][0] > 0);
+    assert.ok(m.audioJapanese.length > m.japanese.length);
+    assert.ok(!m.english.includes('[F16'));
+    assert.ok(!t.english.includes('<F16'));
+  }
+  const m = mao.lines.find(l => l.ref === 'wa2:coda:3003:616');
+  assert.ok(m.audioAdditions[0][0] > 0);
+  assert.equal(m.audioJapanese.slice(...m.audioAdditions[0]), 'お前の…あたしのしたことを許すなんて。');
+  assert.equal(m.english.slice(...m.whispers[0]).trim(), 'To forgive what you… what I did…”');
+});
+
+test("Japanese source endings stay outside audio-added spans", () => {
+  for (const [script, ref, ending] of [
+    ['3201', 'wa2:coda:3201:209', 'だな。'],
+    ['3203', 'wa2:coda:3203:67', 'のか。'],
+  ]) {
+    const data = JSON.parse(readFileSync(new URL(`../public/script-data/coda-${script}.json`, import.meta.url), 'utf8'));
+    const line = data.lines.find(l => l.ref === ref);
+    assert.equal(line.audioJapanese.slice(line.audioAdditions[0][1]), ending);
+  }
 });

@@ -71,7 +71,7 @@ TODOKANAI_SPECIAL_SOURCE_URL = (
     "1AS1v0hceMsYYKEz8l1yTKhu8f3dKAhbu/view?usp=sharing"
 )
 WA2ANALYSIS_SOURCE_URL = "https://wa2analysis.com/"
-PUBLIC_VERSION = "2.0.0"
+PUBLIC_VERSION = "2.1.0"
 PUBLIC_GENERATED_AT = "2026-09-06T00:00:00+00:00"
 TODOKANAI_ARCHIVE_SHA256 = (
     "671408427341185c1331731e4cdc0e3d793b9754beb8e4c1e77e89d3db21ddf3"
@@ -361,10 +361,29 @@ def _assert_binding(binding: dict, slots_by_id: dict[str, dict]) -> None:
             )
 
 
+def whisper_text(raw: str, normalize=web_text) -> dict:
+    # Sentinels survive normalizing line breaks and punctuation. Spans use JS UTF-16 offsets.
+    marked = re.sub(r"\[F16(.*?)\]", lambda m: "\ue000" + m[1] + "\ue001", raw, flags=re.S | re.I)
+    marked = re.sub(r"<F16\s*(.*?)>", lambda m: "\ue000" + m[1] + "\ue001", marked, flags=re.S | re.I)
+    text = normalize(marked)
+    plain = ""; spans = []; start = None
+    for ch in text:
+        if ch == "\ue000": start = len(plain.encode("utf-16-le")) // 2
+        elif ch == "\ue001":
+            if start is not None: spans.append([start, len(plain.encode("utf-16-le")) // 2])
+            start = None
+        else: plain += ch
+    # Normalization may leave whitespace beside removed markers; retain the exact public text.
+    leading = len(plain) - len(plain.lstrip())
+    plain = plain.strip()
+    spans = [[max(0,a-leading), min(len(plain.encode("utf-16-le"))//2,b-leading)] for a,b in spans if b-leading>0]
+    return {"english": plain, **({"whispers": spans} if spans else {})}
+
+
 def _compose_todokanai_text(
     bindings: list[dict],
     slots_by_id: dict[str, dict],
-) -> str:
+) -> dict:
     """Compose runtime fragments before normalizing their shared boundaries."""
 
     result = ""
@@ -387,7 +406,7 @@ def _compose_todokanai_text(
             result += fragment
         else:
             result += f" {fragment}"
-    return web_todokanai_text(result)
+    return whisper_text(result, web_todokanai_text)
 
 
 def _apply_todokanai_overlay(
@@ -512,7 +531,7 @@ def load_todokanai_runtime_rows() -> list[dict]:
                 "script_id": state["script_id"],
                 "line_id": state["line_id"],
                 "status": state["status"],
-                "english": _compose_todokanai_text(
+                **_compose_todokanai_text(
                     state["bindings"],
                     slots_by_id,
                 ),
@@ -545,6 +564,7 @@ def main() -> None:
             f"todokanai={len(todokanai_rows)}"
         )
 
+    audio_additions = {a["ref"]: a for a in json.loads((SITE_ROOT / "scripts/whisper-additions.json").read_text())}
     final_by_ref = {row["ref"]: row["english"] for row in finals}
     if len(final_by_ref) != len(finals):
         raise SystemExit("duplicate refs in final English rows")
@@ -607,8 +627,13 @@ def main() -> None:
             "speakerJa": speaker_ja,
             "speakerEn": speaker_labels.get(speaker_ja, ""),
             "japanese": japanese,
-            "english": web_text(final_by_ref[ref]),
+            **whisper_text(final_by_ref[ref]),
         }
+        addition = audio_additions.get(ref)
+        if addition:
+            line.update(whisper_text(addition["english"]))
+            line["audioJapanese"] = addition["transcript_ja"]
+            line["audioAdditions"] = addition["audioAdditions"]
         if japanese_ruby:
             line["japaneseRuby"] = japanese_ruby
         scripts.setdefault((route, script_id), []).append(line)
@@ -616,6 +641,7 @@ def main() -> None:
             {
                 "ref": ref,
                 "english": comparison_english,
+                **({"whispers": comparison["whispers"]} if comparison_english and comparison.get("whispers") else {}),
                 "status": comparison_status,
             }
         )
@@ -768,6 +794,9 @@ def main() -> None:
                             line["japanese"],
                             line["english"],
                             line.get("japaneseRuby", ""),
+                            line.get("whispers", []),
+                            line.get("audioJapanese", ""),
+                            line.get("audioAdditions", []),
                         ]
                         for line in lines
                     ],
@@ -782,11 +811,8 @@ def main() -> None:
                             line["ref"],
                             line["english"],
                             line["status"],
-                            *(
-                                [line["sourceId"]]
-                                if "sourceId" in line
-                                else []
-                            ),
+                            line.get("sourceId", ""),
+                            line.get("whispers", []),
                         ]
                         for line in comparison_lines
                     ],
@@ -842,6 +868,9 @@ def main() -> None:
             "japanese",
             "english",
             "japaneseRuby",
+            "whispers",
+            "audioJapanese",
+            "audioAdditions",
         ],
         "routes": concordance_routes,
     }
@@ -859,7 +888,7 @@ def main() -> None:
     todokanai_concordance = {
         "schema": "wa2-todokanai-concordance/1",
         "totalLines": public_total_lines,
-        "fields": ["ref", "english", "status", "sourceId"],
+        "fields": ["ref", "english", "status", "sourceId", "whispers"],
         "routes": todokanai_concordance_routes,
     }
     with (TODOKANAI_OUTPUT_ROOT / "concordance.json").open(

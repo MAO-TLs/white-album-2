@@ -5,9 +5,9 @@ import { SiteFooter } from "./SiteFooter";
 export const dynamic = "force-static";
 
 const completeDownloadUrl =
-  "https://github.com/MAO-TLs/white-album-2/releases/download/v2.0.0/White_Album_2_Complete_English_Release_v2.0.0.zip";
+  "https://github.com/MAO-TLs/white-album-2/releases/download/v2.1.0/White_Album_2_Complete_English_Release_v2.1.0.zip";
 const releaseNotesUrl =
-  "https://github.com/MAO-TLs/white-album-2/releases/tag/v2.0.0";
+  "https://github.com/MAO-TLs/white-album-2/releases/tag/v2.1.0";
 
 export default function Home() {
   return (
@@ -61,8 +61,8 @@ export default function Home() {
               </a>
             </div>
             <p className="compatibility">
-              715.8 MB · <a href={releaseNotesUrl}>Release notes</a> · Version
-              2.0.0 · Windows + Wine/CrossOver · Japanese Extended Edition
+              715.6 MB · <a href={releaseNotesUrl}>Release notes</a> · Version
+              2.1.0 · Windows + Wine/CrossOver · Japanese Extended Edition
               required
             </p>
           </div>
@@ -75,7 +75,7 @@ export default function Home() {
         <div className="shell release-grid">
           <div>
             <span className="release-label">Version</span>
-            <strong>v2.0.0</strong>
+            <strong>v2.1.0</strong>
           </div>
           <div>
             <span className="release-label">Script coverage</span>

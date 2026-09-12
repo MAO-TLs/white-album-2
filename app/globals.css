@@ -2215,3 +2215,9 @@ footer {
 @media (max-width: 640px) {
   .hero h1 { font-size: clamp(44px, 14vw, 82px); }
 }
+/* Whispered English remains searchable plain text; audio Japanese is upright. */
+.whisper { font-style: italic; }
+.audio-reconstruction { font-style: normal; text-decoration: underline dotted; text-underline-offset: .3em; text-decoration-color: var(--muted, #8b8b91); }
+.audio-source-note { margin-top: .65rem; font-size: .72rem; color: var(--muted, #8b8b91); }
+.audio-source-note summary { cursor: pointer; width: fit-content; }
+.audio-source-note p { font-size: .8rem; margin-top: .5rem; }

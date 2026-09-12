@@ -57,6 +57,9 @@ type ScriptLine = {
   japanese: string;
   japaneseRuby?: string;
   english: string;
+  whispers?: [number, number][];
+  audioJapanese?: string;
+  audioAdditions?: [number, number][];
 };
 
 type ScriptPayload = {
@@ -76,6 +79,9 @@ type TodokanaiStatus =
 type TodokanaiLine = {
   ref: string;
   english: string;
+  whispers?: [number, number][];
+  audioJapanese?: string;
+  audioAdditions?: [number, number][];
   status: TodokanaiStatus;
   sourceId?: string;
 };
@@ -164,6 +170,9 @@ type ConcordanceRow = [
   japanese: string,
   english: string,
   japaneseRuby: string,
+  whispers?: [number, number][],
+  audioJapanese?: string,
+  audioAdditions?: [number, number][],
 ];
 
 type TodokanaiConcordanceRow = [
@@ -171,6 +180,7 @@ type TodokanaiConcordanceRow = [
   english: string,
   status: TodokanaiStatus,
   sourceId?: string,
+  whispers?: [number, number][],
 ];
 
 type ConcordanceScript<Row> = {
@@ -198,6 +208,9 @@ type ConcordancePayload = {
     "japanese",
     "english",
     "japaneseRuby",
+    "whispers",
+    "audioJapanese",
+    "audioAdditions",
   ];
   routes: ConcordanceRoute<ConcordanceRow>[];
 };
@@ -205,7 +218,7 @@ type ConcordancePayload = {
 type TodokanaiConcordancePayload = {
   schema: "wa2-todokanai-concordance/1";
   totalLines: number;
-  fields: ["ref", "english", "status", "sourceId"];
+  fields: ["ref", "english", "status", "sourceId", "whispers"];
   routes: ConcordanceRoute<TodokanaiConcordanceRow>[];
 };
 
@@ -238,7 +251,7 @@ function JapaneseRubyText({
     if (index > cursor) parts.push(rubyText.slice(cursor, index));
     parts.push(
       <ruby key={`${index}-${match[1]}-${match[2]}`}>
-        <rb>{match[1]}</rb>
+        <span>{match[1]}</span>
         <rt>{match[2].trim()}</rt>
       </ruby>,
     );
@@ -246,6 +259,20 @@ function JapaneseRubyText({
   }
   if (cursor < rubyText.length) parts.push(rubyText.slice(cursor));
   return parts.length ? parts : plain;
+}
+
+function WhisperText({ text, spans = [], offset = 0, japanese = false }: { text: string; spans?: [number, number][]; offset?: number; japanese?: boolean }) {
+  const parts: ReactNode[] = [];
+  let cursor = 0;
+  spans.forEach(([a, b], index) => {
+    const start = Math.max(0, a - offset), end = Math.min(text.length, b - offset);
+    if (end <= start || end <= cursor) return;
+    if (start > cursor) parts.push(text.slice(cursor, start));
+    parts.push(japanese ? <span className="audio-reconstruction" key={index}>{text.slice(Math.max(start, cursor), end)}</span> : <em className="whisper" key={index}>{text.slice(Math.max(start, cursor), end)}</em>);
+    cursor = end;
+  });
+  if (cursor < text.length) parts.push(text.slice(cursor));
+  return <>{parts}</>;
 }
 
 function errorCategoryLabel(value: string) {
@@ -258,6 +285,7 @@ function errorCategoryLabel(value: string) {
 
 function TodokanaiErrorText({
   text,
+  whispers,
   findings,
   activeFindingId,
   onToggleFinding,
@@ -265,6 +293,7 @@ function TodokanaiErrorText({
   dossierLinks,
 }: {
   text: string;
+  whispers?: [number, number][];
   findings: TodokanaiErrorFinding[];
   activeFindingId: string;
   onToggleFinding: (findingId: string) => void;
@@ -288,7 +317,7 @@ function TodokanaiErrorText({
 
   positioned.forEach(({ finding, start }) => {
     if (start < cursor) return;
-    if (start > cursor) fragments.push(text.slice(cursor, start));
+    if (start > cursor) fragments.push(<WhisperText key={`text-${cursor}`} text={text.slice(cursor, start)} spans={whispers} offset={cursor} />);
     const tooltipId = `error-preview-${finding.id}`;
     fragments.push(
       <button
@@ -299,7 +328,7 @@ function TodokanaiErrorText({
         aria-expanded={activeFindingId === finding.id}
         onClick={() => onToggleFinding(finding.id)}
       >
-        {finding.highlight}
+        {<WhisperText text={finding.highlight} spans={whispers} offset={start} />}
         <span className="todokanai-error-preview" id={tooltipId} role="tooltip">
           <strong>{errorCategoryLabel(finding.category)}</strong>
           <span>{finding.explanation}</span>
@@ -309,7 +338,7 @@ function TodokanaiErrorText({
     renderedIds.add(finding.id);
     cursor = start + finding.highlight.length;
   });
-  if (cursor < text.length) fragments.push(text.slice(cursor));
+  if (cursor < text.length) fragments.push(<WhisperText key={`text-${cursor}`} text={text.slice(cursor)} spans={whispers} offset={cursor} />);
 
   const unpositioned = findings.filter(
     (finding) => !renderedIds.has(finding.id),
@@ -995,6 +1024,7 @@ export function ScriptBrowser() {
         line.speakerJa,
         line.speakerEn,
         line.japanese,
+        line.audioJapanese ?? "",
         line.english,
         showTodokanai ? (todokanaiByRef.get(line.ref)?.english ?? "") : "",
       ].some((value) => {
@@ -1076,7 +1106,7 @@ export function ScriptBrowser() {
       route.scripts.forEach((script, scriptIndex) => {
         script.lines.forEach((row, lineIndex) => {
           const primaryHaystack = normalizeSearchText(
-            [row[0], row[2], row[3], row[4], row[5], row[6]].join(
+            [row[0], row[2], row[3], row[4], row[5], row[6], row[8] ?? ""].join(
               "\u0000",
             ),
           );
@@ -1504,11 +1534,12 @@ export function ScriptBrowser() {
                         ) : null}
                       </div>
                       <p>
-                        <JapaneseRubyText
+                        {line.audioJapanese ? <>「<WhisperText text={line.audioJapanese.replace(/。$/, "")} spans={line.audioAdditions} japanese />」</> : <JapaneseRubyText
                           plain={line.japanese}
                           rubyText={line.japaneseRuby}
-                        />
+                        />}
                       </p>
+                      {line.audioJapanese ? <details className="audio-source-note"><summary>音声より · From audio</summary><p lang="en">Underlining marks words supplied from audio and absent from the written script. Punctuation is editorial.</p><p lang="ja">画面上の原文：{line.japanese}</p></details> : null}
                     </div>
                     <div className="line-cell line-en">
                       <div className="line-cell-heading">
@@ -1517,7 +1548,7 @@ export function ScriptBrowser() {
                           <span className="edition-label">MAO English</span>
                         ) : null}
                       </div>
-                      <p>{line.english}</p>
+                      <p><WhisperText text={line.english} spans={line.whispers} /></p>
                     </div>
                     {comparisonVisible ? (
                       <div className="line-cell line-en line-todokanai">
@@ -1529,6 +1560,7 @@ export function ScriptBrowser() {
                           errorFindings.length ? (
                             <TodokanaiErrorText
                               text={todokanaiLine.english}
+                              whispers={todokanaiLine.whispers}
                               findings={errorFindings}
                               activeFindingId={activeTodokanaiErrorId}
                               contextHref={contextHref}
@@ -1540,7 +1572,7 @@ export function ScriptBrowser() {
                               }
                             />
                           ) : (
-                            <p>{todokanaiLine.english}</p>
+                            <p><WhisperText text={todokanaiLine.english} spans={todokanaiLine.whispers} /></p>
                           )
                         ) : (
                           <p
@@ -1684,6 +1716,9 @@ export function ScriptBrowser() {
                         japanese,
                         english,
                         japaneseRuby,
+                        whispers,
+                        audioJapanese,
+                        audioAdditions,
                       ] = line.row;
                       const comparisonLine = line.comparisonRow;
                       const errorFindings =
@@ -1741,11 +1776,9 @@ export function ScriptBrowser() {
                                 ) : null}
                               </div>
                               <p>
-                                <JapaneseRubyText
-                                  plain={japanese}
-                                  rubyText={japaneseRuby}
-                                />
+                                {audioJapanese ? <>「<WhisperText text={audioJapanese.replace(/。$/, "")} spans={audioAdditions} japanese />」</> : <JapaneseRubyText plain={japanese} rubyText={japaneseRuby} />}
                               </p>
+                              {audioJapanese ? <details className="audio-source-note"><summary>音声より · From audio</summary><p lang="en">Underlining marks words supplied from audio and absent from the written script. Punctuation is editorial.</p><p lang="ja">画面上の原文：{japanese}</p></details> : null}
                             </div>
                             <div className="line-cell line-en">
                               <div className="line-cell-heading">
@@ -1756,7 +1789,7 @@ export function ScriptBrowser() {
                                   </span>
                                 ) : null}
                               </div>
-                              <p>{english}</p>
+                              <p><WhisperText text={english} spans={whispers} /></p>
                             </div>
                             {globalComparisonVisible ? (
                               <div className="line-cell line-en line-todokanai">
@@ -1770,6 +1803,7 @@ export function ScriptBrowser() {
                                   errorFindings.length ? (
                                     <TodokanaiErrorText
                                       text={comparisonLine[1]}
+                                      whispers={comparisonLine[4]}
                                       findings={errorFindings}
                                       activeFindingId={activeTodokanaiErrorId}
                                       contextHref={resultHref}
@@ -1783,7 +1817,7 @@ export function ScriptBrowser() {
                                       }
                                     />
                                   ) : (
-                                    <p>{comparisonLine[1]}</p>
+                                    <p><WhisperText text={comparisonLine[1]} spans={comparisonLine[4]} /></p>
                                   )
                                 ) : (
                                   <p
