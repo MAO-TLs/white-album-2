@@ -483,6 +483,7 @@ select {
 
 .credits > div {
   display: grid;
+  align-items: center;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   padding: 24px 0;
