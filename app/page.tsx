@@ -61,7 +61,7 @@ export default function Home() {
               </a>
             </div>
             <p className="compatibility">
-              715.6 MB · <a href={releaseNotesUrl}>Release notes</a> · Version
+              614.4 MB · <a href={releaseNotesUrl}>Release notes</a> · Version
               2.1.0 · Windows + Wine/CrossOver · Japanese Extended Edition
               required
             </p>
@@ -248,6 +248,26 @@ export default function Home() {
             <p>
               The patch has been tested and confirmed working by users on
               Windows and Mac via Wine/CrossOver.
+            </p>
+          </aside>
+
+          <aside className="install-warning">
+            <strong>Movie playback or blurry movies on macOS?</strong>
+            <p>
+              A failure at the Leaf startup logo can indicate missing Wine media
+              libraries, not a failed movie patch. The v2.1.0 macOS hotfix adds{" "}
+              <code>Launch WHITE ALBUM 2 (Sikarugir).command</code> for an existing
+              Wine bottle with Sikarugir Template-1.0.11 and engine
+              WS12WineSikarugir10.0_6 installed. It loads the complete media
+              framework and accelerated D3D9 renderer while retaining the MAO
+              audio-subtitle hook. CrossOver users can keep using the existing
+              CrossOver launcher. See the package README for setup requirements.
+            </p>
+            <p>
+              For sharper movies, choose <strong>Movie Settings → High Quality</strong>{" "}
+              in the game settings. The game includes both low-resolution and
+              720p movie variants; resizing its window does not select the
+              higher-resolution file.
             </p>
           </aside>
 

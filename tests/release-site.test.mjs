@@ -36,7 +36,7 @@ test("exports the release, script, and audit pages", async () => {
   assert.doesNotMatch(home, /Special Contents movie/i);
   assert.doesNotMatch(home, /Special Contents mv000\.pak/i);
   assert.match(home, /Download complete release/i);
-  assert.match(home, /715\.6 MB/i);
+  assert.match(home, /614\.4 MB/i);
   assert.match(home, /Release notes/i);
   assert.match(home, /two translated digital novels/i);
   assert.match(home, /all fifteen main-game movies/i);
@@ -55,6 +55,9 @@ test("exports the release, script, and audit pages", async () => {
   );
   assert.doesNotMatch(home, /native Windows gameplay has not been locally/i);
   assert.match(home, /Launch WHITE ALBUM 2\.command/i);
+  assert.match(home, /Launch WHITE ALBUM 2 \(Sikarugir\)\.command/);
+  assert.match(home, /Movie Settings → High Quality/);
+  assert.match(home, /missing Wine media/);
   assert.match(home, /DirectX End-User Runtimes/i);
   assert.match(
     home,
