@@ -56,7 +56,8 @@ test("exports the release, script, and audit pages", async () => {
   assert.doesNotMatch(home, /native Windows gameplay has not been locally/i);
   assert.match(home, /Launch WHITE ALBUM 2\.command/i);
   assert.match(home, /Launch WHITE ALBUM 2 \(Sikarugir\)\.command/);
-  assert.match(home, /Movie Settings → High Quality/);
+  assert.match(home, /Movie playback errors on macOS\?/);
+  assert.doesNotMatch(home, /blurry movies|Movie Settings → High Quality/);
   assert.match(home, /missing Wine media/);
   assert.match(home, /DirectX End-User Runtimes/i);
   assert.match(

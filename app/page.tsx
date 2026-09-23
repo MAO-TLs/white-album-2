@@ -252,7 +252,7 @@ export default function Home() {
           </aside>
 
           <aside className="install-warning">
-            <strong>Movie playback or blurry movies on macOS?</strong>
+            <strong>Movie playback errors on macOS?</strong>
             <p>
               A failure at the Leaf startup logo can indicate missing Wine media
               libraries, not a failed movie patch. The v2.1.0 macOS hotfix adds{" "}
@@ -262,12 +262,6 @@ export default function Home() {
               framework and accelerated D3D9 renderer while retaining the MAO
               audio-subtitle hook. CrossOver users can keep using the existing
               CrossOver launcher. See the package README for setup requirements.
-            </p>
-            <p>
-              For sharper movies, choose <strong>Movie Settings → High Quality</strong>{" "}
-              in the game settings. The game includes both low-resolution and
-              720p movie variants; resizing its window does not select the
-              higher-resolution file.
             </p>
           </aside>
 
