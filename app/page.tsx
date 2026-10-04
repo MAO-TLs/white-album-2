@@ -87,7 +87,7 @@ export default function Home() {
           </div>
           <div>
             <span className="release-label">Status</span>
-            <strong className="release-status">Complete</strong>
+            <strong className="release-status">Released</strong>
           </div>
         </div>
       </section>
