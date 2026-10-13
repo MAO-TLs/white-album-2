@@ -50,7 +50,7 @@ export default function ScriptPage() {
           currentPage="script"
         />
         <div className="reader-intro shell">
-          <p className="eyebrow">Script Version v2.1.0</p>
+          <p className="eyebrow">Script version v2.1.0</p>
           <h1>Script browser</h1>
           <p>
             Search the complete 77,198-line corpus or read any of its 254

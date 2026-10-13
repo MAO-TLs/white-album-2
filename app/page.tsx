@@ -61,9 +61,9 @@ export default function Home() {
               </a>
             </div>
             <p className="compatibility">
-              614.4 MB · <a href={releaseNotesUrl}>Release notes</a> · Version
-              2.1.0 · Windows + Wine/CrossOver · Japanese Extended Edition
-              required
+              614.4 MB · <a href={releaseNotesUrl}>Release notes</a> · Patch version
+              v2.1.0 · Windows + Wine/CrossOver · Japanese Extended Edition
+              required · <a href="#install">Installation instructions</a>
             </p>
           </div>
 

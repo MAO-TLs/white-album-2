@@ -11,7 +11,7 @@
     "start": "vinext start",
     "data": "python3 scripts/build-script-data.py",
     "errors": "python3 scripts/build-todokanai-error-data.py",
-    "test": "npm run build && node --test tests/release-site.test.mjs",
+    "test": "npm run build && node --test tests/*.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
   },
   "dependencies": {
