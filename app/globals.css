@@ -2222,3 +2222,11 @@ footer {
 .audio-source-note { margin-top: .65rem; font-size: .72rem; color: var(--muted, #8b8b91); }
 .audio-source-note summary { cursor: pointer; width: fit-content; }
 .audio-source-note p { font-size: .8rem; margin-top: .5rem; }
+
+/* Blur only the artwork, fading continuously through the upper quarter. */
+.hero-backdrop-soft {
+  filter: blur(14px);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000, rgba(0,0,0,.75) 6%, rgba(0,0,0,.35) 13%, rgba(0,0,0,.08) 20%, transparent 25%);
+  mask-image: linear-gradient(to bottom, #000, rgba(0,0,0,.75) 6%, rgba(0,0,0,.35) 13%, rgba(0,0,0,.08) 20%, transparent 25%);
+}

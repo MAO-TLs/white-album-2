@@ -29,6 +29,21 @@ export default function Home() {
             aria-hidden="true"
           />
         </picture>
+<picture>
+          <source
+            media="(max-width: 900px)"
+            srcSet="./wa2-winter-night-960.webp"
+            type="image/webp"
+          />
+          <source srcSet="./wa2-winter-night.webp" type="image/webp" />
+          {/* A plain relative fallback survives both local export and the GitHub Pages subpath. */}
+          <img
+            className="hero-backdrop hero-backdrop-soft"
+            src="./wa2-winter-night.png"
+            alt=""
+            aria-hidden="true"
+          />
+        </picture>
         <SiteNav
           releaseHref="./"
           scriptHref="./script/"
