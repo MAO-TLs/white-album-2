@@ -1,0 +1,26 @@
+WHITE ALBUM 2 movie playback repair — candidate 1
+
+Addresses issue #14: translated movies remaining black and silent on some
+Windows configurations until skipped.
+
+This is an optional movie-patcher update for the existing v2.1.0 release,
+not a new translation or a replacement full-game download.
+
+Extract and merge the Movie Patcher folder into your game folder beside
+WA2.exe. Close the game, then run Repair Movies (Windows).cmd. Existing
+Wine/CrossOver launchers also apply packet repair to current movies.
+
+The repair changes ASF packet sizes to fit each movie's audio blocks. It
+does not re-encode audio or video. Existing translated files are preserved
+as .before-packet-repair backups; original Japanese backups are untouched.
+Unknown movie files and conflicting backups are refused.
+
+Verified on all 30 current movie files: original file hashes, unchanged
+encoded media, unchanged packet timing, complete decoding, and idempotence.
+Also tested with the exact pinned Windows FFmpeg under Wine. The Windows
+patcher passed read-only verification of all 30 files under Wine.
+
+Native Windows in-game playback is NOT yet confirmed. This prerelease is
+for testing the reporter's proposed fix; issue #14 remains open. Please
+report whether the intro and other affected movies now play, along with
+your Windows version. Keep the backups until you have checked playback.

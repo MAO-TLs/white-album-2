@@ -1,0 +1,553 @@
+{
+  "schema": "wa2-movie-patcher/1",
+  "release": "v1.2.5",
+  "ffmpeg": {
+    "version": "9.0-essentials_build-www.gyan.dev",
+    "url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0/ffmpeg-9.0-essentials_build.zip",
+    "archive_sha256": "e6b54767a6065919048f1a098eb27211ca4e12b4348a05d88777a5855d0b6e71",
+    "archive_size_bytes": 111167378,
+    "version_marker": "ffmpeg version 9.0-essentials_build-www.gyan.dev"
+  },
+  "assets": [
+    {
+      "asset_id": "mv010",
+      "film_id": "mv010",
+      "quality": "high",
+      "relative_install_path": "IC/mv010.pak",
+      "ass_path": "ass/mv010.ass",
+      "source_sha256": "462274384901e55d441e71dd9bc5d257e4cc39670cd864993019397a98d83c7d",
+      "accepted_output_sha256": [
+        "c03acf933d19c5c9533ab2c580c7c100e07dad63ae3f7c95fcbb53fc74efc178"
+      ],
+      "expected_output_sha256": "00210903b5af233fcadd2394b3c4a6a4b34055f5a751cc52cc3e1ae9fddfbaf8",
+      "packet_fixed_sha256": "73b799402f8a0cc27154f92b0b2b0ae9d4a7a866156a00a8ad258ede814f4cdf",
+      "expected_output_size_bytes": 9796900,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 51.156,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv011",
+      "film_id": "mv010",
+      "quality": "low",
+      "relative_install_path": "IC/mv011.pak",
+      "ass_path": "ass/mv011.ass",
+      "source_sha256": "6149b450a042f8d342e4c7788825925c4f103d0358057c4eabb6b8a2bfca7e0d",
+      "accepted_output_sha256": [
+        "1ace42111d5dccd3af050cb32ee952fc182fb2881402823f7aff852d2af2f1d4"
+      ],
+      "expected_output_sha256": "47cfe9aa5a34b9d28faf81dc1a321c76c550f9abac4e59fbb80ee887a8dccad1",
+      "packet_fixed_sha256": "12c8e857aacd3650edc670d8532214b83b307a604e7a42a8810f7249cfbc4177",
+      "expected_output_size_bytes": 4776208,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 51.412,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv020",
+      "film_id": "mv020",
+      "quality": "high",
+      "relative_install_path": "IC/mv020.pak",
+      "ass_path": "ass/mv020.ass",
+      "source_sha256": "7fa5fa906713a4cd197714bef517e142a0d6975d4a17ea538eb4a481523a327c",
+      "accepted_output_sha256": [
+        "10f7e05e37a57400840316b0655f3717025422f9cb1181aa974cfae46ebb41ce"
+      ],
+      "expected_output_sha256": "0ea4cf35317bacfd98a51d875c4b69a74ef43c46719b6f9a86cf3300fb8f0161",
+      "packet_fixed_sha256": "882e656b2ecebc004c64fcb02ea331c60d5563f02f2c852a2bdb42cedfd37ca8",
+      "expected_output_size_bytes": 36312572,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 129.194,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv021",
+      "film_id": "mv020",
+      "quality": "low",
+      "relative_install_path": "IC/mv021.pak",
+      "ass_path": "ass/mv021.ass",
+      "source_sha256": "ac1dac903a76c124f308a8a7bbd2c889eb8f240cbfb7d740e6c988d4df3cdf52",
+      "accepted_output_sha256": [
+        "1821182bcce33adfb69314767e2188494012a0c2dcb53fafcd70a98a9bc2e30d"
+      ],
+      "expected_output_sha256": "1dafe3cfafa86f8f03f182177728a8370205a6e123f49e824e6c65b9169541b5",
+      "packet_fixed_sha256": "bbd451b66a996ee566689189c674fcdfd87ec0d168e97fec2a51644add6e1738",
+      "expected_output_size_bytes": 12687080,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 129.45,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv070",
+      "film_id": "mv070",
+      "quality": "high",
+      "relative_install_path": "IC/MV070.pak",
+      "ass_path": "ass/mv070.ass",
+      "source_sha256": "42651392ea98a95bb811bc37da6a0e0f03d10e907c9c10c9ffaed51a97f69fc5",
+      "accepted_output_sha256": [
+        "bd4e8b83699b94f902b78b4fa90edd43d07882591ab5eb479d7c3112b3da9824"
+      ],
+      "expected_output_sha256": "a58550892ce4400fccebf48e3fd715760bd3d58bc24bc5823110875a9f8e714d",
+      "packet_fixed_sha256": "52820af245709d630665c72fcf61c17caef8c88ec73b99094759597ca17df568",
+      "expected_output_size_bytes": 14628924,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 55.088,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv071",
+      "film_id": "mv070",
+      "quality": "low",
+      "relative_install_path": "IC/MV071.pak",
+      "ass_path": "ass/mv071.ass",
+      "source_sha256": "62f63ae4e82ca6f0176a6c7d309987b3d2d12b6593c5c856b065b5cbc35233b6",
+      "accepted_output_sha256": [
+        "b127e4c3b7414ba4930182bea4c11d3dc931aad18a51f026d9b7a8aa087746fa"
+      ],
+      "expected_output_sha256": "040e242340cb03140719e527fd96e3fd620ae6e363de782302294a951df35f4e",
+      "packet_fixed_sha256": "2514f0ca051c24fe45740696e1b43e2149cf32179165b24969f59224409d4a5c",
+      "expected_output_size_bytes": 5742634,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 55.088,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv080",
+      "film_id": "mv080",
+      "quality": "high",
+      "relative_install_path": "IC/MV080.pak",
+      "ass_path": "ass/mv080.ass",
+      "source_sha256": "25362813b0df6cd4221ac6d2737cf598c287239bc0b30832c68277a2043be0e3",
+      "accepted_output_sha256": [
+        "fc21a223f15a766d6372801e0a56d2d3ae314d616517459b830189a466a86b87"
+      ],
+      "expected_output_sha256": "dd429fbe3d5e48a9ef6c2b4f782cbbf1cbb17690e07c1ec6fd7669c5c52ef8ed",
+      "packet_fixed_sha256": "9f3e34bb33dcc9fed7f011558ee39bf8e45636c4e1e01ba408c381b96192e879",
+      "expected_output_size_bytes": 38975032,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 139.177,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv081",
+      "film_id": "mv080",
+      "quality": "low",
+      "relative_install_path": "IC/MV081.pak",
+      "ass_path": "ass/mv081.ass",
+      "source_sha256": "5a1a777cb77773e4aa097cd97dec4c187164c4d2cfcbca0a30b1a641e270fa3d",
+      "accepted_output_sha256": [
+        "2d782f9852e584bd7894142c00ff1a5430c07d8eea2043cb81d4c6a3aa7454e4"
+      ],
+      "expected_output_sha256": "d16d7fa5a900f4631329dc957719609056b794880022fdd1c40ff2bf2f4731bc",
+      "packet_fixed_sha256": "f90e79dd48d7626c3175598b7880bd4765857429c70cf6c2a45b54ca5ee50fd0",
+      "expected_output_size_bytes": 13503142,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 139.039,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv090",
+      "film_id": "mv090",
+      "quality": "high",
+      "relative_install_path": "IC/MV090.pak",
+      "ass_path": "ass/mv090.ass",
+      "source_sha256": "7644764aace6e80dbc27135280faf79c546a308b6c27e9cc189f0ff3592dd793",
+      "accepted_output_sha256": [
+        "c73d10d037b1cf183e14402ffacafa4f9ef714b7b3a521ae164ec352de83f88c"
+      ],
+      "expected_output_sha256": "5864908f769305f468ca1828dbd925ade2bcc3f346b835d47c57f66c24c8a3d3",
+      "packet_fixed_sha256": "338f865fc8d412873e49a1bfcc206906426f3e3943db92e34682340f71c2eaa2",
+      "expected_output_size_bytes": 77676690,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 282.409,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv091",
+      "film_id": "mv090",
+      "quality": "low",
+      "relative_install_path": "IC/MV091.pak",
+      "ass_path": "ass/mv091.ass",
+      "source_sha256": "80fa65f407fd9e87cf814a061d206b9781d3f2fbbec727ebfcce17520847292e",
+      "accepted_output_sha256": [
+        "082c9db1d6c21f064bf257ffb6656f25e6d7ba05fb6f921b65984ddf51648b3e"
+      ],
+      "expected_output_sha256": "7696cc55ea635ad9439fa8d110f7c44b7ced6169c476b31d1bd13a81e8c27140",
+      "packet_fixed_sha256": "1ea1b0b2ff1aa62b2cd1c8cc805c12206d7bda58542642d303a467b1147016d6",
+      "expected_output_size_bytes": 27148798,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 282.495,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv100",
+      "film_id": "mv100",
+      "quality": "high",
+      "relative_install_path": "mv100.pak",
+      "ass_path": "ass/mv100.ass",
+      "source_sha256": "b71c17971e547a965c7d43ab8cf35e67c1fd4fb957a5539684840a35682ba887",
+      "accepted_output_sha256": [
+        "afc4d88e9c714be73381880a136e7e7192a00da00c16d1a2cb38cfcc793e798e"
+      ],
+      "expected_output_sha256": "5dbde8c725620004d7f3e6a345548d8b3db84445fd03201015ef3ab71c8cb740",
+      "packet_fixed_sha256": "c64d9974d9245cbf7b9b3c0a3e34c0cfd6fbed9f06c5e886894db6e4a8d720b0",
+      "expected_output_size_bytes": 30469246,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 108.208,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv101",
+      "film_id": "mv100",
+      "quality": "low",
+      "relative_install_path": "mv101.pak",
+      "ass_path": "ass/mv101.ass",
+      "source_sha256": "7b0293092217ac4b8b3648cababe18624543c648e47493f5905b5f7f1fadc30d",
+      "accepted_output_sha256": [
+        "ae4d9bb81845ae47ad803874e23fdcad068f77ee406fca89269850b40911d608"
+      ],
+      "expected_output_sha256": "bcfeb569d21455acc94de3ad25617ebe068442b2065407413e5012d712d7df23",
+      "packet_fixed_sha256": "d0928ff9f748727fc770485272b96659be491ab58ce338ae08540278648e1439",
+      "expected_output_size_bytes": 11611754,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 108.208,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv110",
+      "film_id": "mv110",
+      "quality": "high",
+      "relative_install_path": "mv110.pak",
+      "ass_path": "ass/mv110.ass",
+      "source_sha256": "ff148224e0905eda33440e46c40daa2558abcc7ca93745624ee89f8f7129aa77",
+      "accepted_output_sha256": [
+        "169b25696d1362e3299faeab58d6b9b37622924f53df51412fa8f72235fc6117"
+      ],
+      "expected_output_sha256": "d6302bbe6d29e5b4c99e77e7b2a4bdd59ec753c0b3bc3de87092fcdfc407756b",
+      "packet_fixed_sha256": "bf59066c76bd74cafd00cf1630afb5d5548a77ce33406f244e1f34b66861516b",
+      "expected_output_size_bytes": 77555108,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 285.225,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv111",
+      "film_id": "mv110",
+      "quality": "low",
+      "relative_install_path": "mv111.pak",
+      "ass_path": "ass/mv111.ass",
+      "source_sha256": "6d394c839be44a638b36049c30c601511590b41c101cfba240554a565fc37d15",
+      "accepted_output_sha256": [
+        "043b0435b33529331b122f18cd8f4a8ccfe4a75ab33771b807815066438eb911"
+      ],
+      "expected_output_sha256": "f9c773c8b5eab9385781f2da5f2e6dc3ec04626f7c39bc5e1a7239c237691ec4",
+      "packet_fixed_sha256": "5f9613e55f1f4a1f05836ecbc32c7d990bd40a34cfba5a50eca830ccf7596c2f",
+      "expected_output_size_bytes": 27321618,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 285.118,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv120",
+      "film_id": "mv120",
+      "quality": "high",
+      "relative_install_path": "mv120.pak",
+      "ass_path": "ass/mv120.ass",
+      "source_sha256": "43b21d05f8c4b92ae76ef919078e34869d9af116cf05d6abe0f0c9402cf8e500",
+      "accepted_output_sha256": [
+        "30d60d55fdd697027bf3efc94bce8b76c13d00b3b9cd249619d8af52dc3e648c"
+      ],
+      "expected_output_sha256": "368aaedc35034ef5ef16904e55acbdd45cea4feeb61b78999b0134785a85fcdf",
+      "packet_fixed_sha256": "c1907381dc4fcf6658b34a086f03ddffc025e6126f85d1d08739057c5514e11b",
+      "expected_output_size_bytes": 93590668,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 345.215,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv121",
+      "film_id": "mv120",
+      "quality": "low",
+      "relative_install_path": "mv121.pak",
+      "ass_path": "ass/mv121.ass",
+      "source_sha256": "68e74551a598e17c51f7e61f516ce140fd93e5caa9af608fd85f1a8a99cea693",
+      "accepted_output_sha256": [
+        "601bd50aa03036328fd039d2daf647e5e838375ca67387c0743de9ec4387b93d"
+      ],
+      "expected_output_sha256": "c401ee169622922e67b6c33a008a827f9b4857f94e2765be7f7cce5779e184f0",
+      "packet_fixed_sha256": "3fda9a119b488616646d16b9b9449830327dd1ce65f5134daffb42f839061094",
+      "expected_output_size_bytes": 32918778,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 345.3,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv130",
+      "film_id": "mv130",
+      "quality": "high",
+      "relative_install_path": "mv130.pak",
+      "ass_path": "ass/mv130.ass",
+      "source_sha256": "4079b88517c5d16de5c921a68b755cf1742c4abd2cf491a9c2180041bfe1aa73",
+      "accepted_output_sha256": [
+        "2d7eafad184d8b03e4c29458d163fec46b55c59d81bd727180a1af5894345fa6"
+      ],
+      "expected_output_sha256": "c0848f8e06995bb3419345e14d2dfa448847883fc85163a1272591fd0032ff96",
+      "packet_fixed_sha256": "4f49ea329800b16bc7442082e245f74aa80b49bc5f31530416baa7f2d19f8f0a",
+      "expected_output_size_bytes": 93597068,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 345.215,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv131",
+      "film_id": "mv130",
+      "quality": "low",
+      "relative_install_path": "mv131.pak",
+      "ass_path": "ass/mv131.ass",
+      "source_sha256": "dec11ee303c0536b19c8d77554da337cf00e803a6050ce2e9a7b9a67ea33da24",
+      "accepted_output_sha256": [
+        "01755ef25ac90a69b3e8bcc1b841577fea7d1197c53fa744949d4c1060bf0802"
+      ],
+      "expected_output_sha256": "7d59a0519cb5c3816e12cae54f36fa8cb00cfa7747c9f6741e14cb944bed727d",
+      "packet_fixed_sha256": "9ea84313b8290484352f6adf7bb7335c387c80f91b633bb942169361cebfc350",
+      "expected_output_size_bytes": 32893176,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 345.3,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv140",
+      "film_id": "mv140",
+      "quality": "high",
+      "relative_install_path": "mv140.pak",
+      "ass_path": "ass/mv140.ass",
+      "source_sha256": "23281caec48b5dae2024c0d8016115ba9705a6a6186b0315c402c9ed26d62c0e",
+      "accepted_output_sha256": [
+        "08c6fa71742490487bea0657199eed5eb5f3c9bb7bd25dec233837bc4627d392"
+      ],
+      "expected_output_sha256": "defc43113ce9e0a731aba04fb499a127e46107a7801116f26b6f673ea1b00df2",
+      "packet_fixed_sha256": "563ac61c771032b6ec1b7809b779b582c7eeb7651ecd5a8b7bb8238a72118a2d",
+      "expected_output_size_bytes": 93654668,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 345.215,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv141",
+      "film_id": "mv140",
+      "quality": "low",
+      "relative_install_path": "mv141.pak",
+      "ass_path": "ass/mv141.ass",
+      "source_sha256": "864a4a3673031a570d5e1a1e44b4229e784242b9bab4e46330b28e1bfe4517cd",
+      "accepted_output_sha256": [
+        "83e0d411c5859e4af09774379e89625d0bf57ea5ff2ec3c512ca63ee0f9104d5"
+      ],
+      "expected_output_sha256": "5be5306ccd722e5cf07f7cca1738b781de5f352d3672087b86161e6897895c16",
+      "packet_fixed_sha256": "3e2b4cf494b129bb9b907928bf19c4db3169325dac8e364ec0ef9e8b0d97d5d0",
+      "expected_output_size_bytes": 32937976,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 345.3,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv200",
+      "film_id": "mv200",
+      "quality": "high",
+      "relative_install_path": "mv200.pak",
+      "ass_path": "ass/mv200.ass",
+      "source_sha256": "3def3a22287b25126d6e1efead5ab19c67b913533275129a47ab34121011da78",
+      "accepted_output_sha256": [
+        "f2ab0f1d8ec0e14f0ba0c016e9a43ee5f2c86128ff8bffcb85d3a1af42104495"
+      ],
+      "expected_output_sha256": "f8b22ff510296d1e299cc0dd4e2a3bda7c59a0908be3fd15014e9fc50c329f1b",
+      "packet_fixed_sha256": "d3dbca1d4486f9c2e5655c39d3b64e250bf01601552793f1ed759441eda03f16",
+      "expected_output_size_bytes": 36565378,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 130.217,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv201",
+      "film_id": "mv200",
+      "quality": "low",
+      "relative_install_path": "mv201.pak",
+      "ass_path": "ass/mv201.ass",
+      "source_sha256": "b8f620559bb0db02ec44edd940c94f6a2c7af67d75c2a2552dd73efb42c4d800",
+      "accepted_output_sha256": [
+        "27930b85ee733dafcb95b61ac5847dfb662051710d24eb80b20ec59f9499ddee"
+      ],
+      "expected_output_sha256": "0d7f879d74bef7e9891f3f0fd28fbcc0d453260145dba8823372d9dceb1fa22f",
+      "packet_fixed_sha256": "1d0f279dd75f636c056fa831e894466545d3e7a3d49e1058d27e14edf2c8292e",
+      "expected_output_size_bytes": 12687086,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 130.303,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv210",
+      "film_id": "mv210",
+      "quality": "high",
+      "relative_install_path": "mv210.pak",
+      "ass_path": "ass/mv210.ass",
+      "source_sha256": "32b172cb0933a151614425c0ddcf1aa846459530b56fcd7e59b4a8f27dd7ae0d",
+      "accepted_output_sha256": [
+        "2c614ffba802d937e953666500440a931c79fc9a76367536438124891ce6ddf1"
+      ],
+      "expected_output_sha256": "2eea201bd703a4aba01d36dfd005ae8ba1c9a3c3a54e8be3928b06677a4db614",
+      "packet_fixed_sha256": "265a7599d592107295e487aafcab2d6e3b88cd998c9a7e906eac43d115e281cf",
+      "expected_output_size_bytes": 92483396,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 333.132,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv211",
+      "film_id": "mv210",
+      "quality": "low",
+      "relative_install_path": "mv211.pak",
+      "ass_path": "ass/mv211.ass",
+      "source_sha256": "a2197f20e720af54d70b7cc0e6687e408a6d529b28ae8c5a0c6afdc0d7d46f58",
+      "accepted_output_sha256": [
+        "954b741e79ad7c1e7df088152df0962c41de09dd93a1135a1a99dd4fce3fc094"
+      ],
+      "expected_output_sha256": "b3940550e68cb32ab67be0355df08836fef534c8df4fc4485efe71804b0eb951",
+      "packet_fixed_sha256": "874ff7736e0111cdc550ff9e35f8c8141577cd54b4383b8dbe9f76aa053303c4",
+      "expected_output_size_bytes": 32147502,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 333.183,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv220",
+      "film_id": "mv220",
+      "quality": "high",
+      "relative_install_path": "mv220.pak",
+      "ass_path": "ass/mv220.ass",
+      "source_sha256": "2922fbb347767121cbc9584448c65b68528c911fbd20c80b534768e0a1957814",
+      "accepted_output_sha256": [
+        "0ae83be4eb32cfbc47ce45f2732756294dc547a9d95ffaac2dfa240ac4f9ce00"
+      ],
+      "expected_output_sha256": "75f27cbe4e887994a88727500d4733b51649436a5d20a5e8cb0641b13a43d4b4",
+      "packet_fixed_sha256": "2ba9f1d7802faef32fe387fdfffdbadff82ddeb7e7d366d80038272f769fbfae",
+      "expected_output_size_bytes": 102365212,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 369.151,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv221",
+      "film_id": "mv220",
+      "quality": "low",
+      "relative_install_path": "mv221.pak",
+      "ass_path": "ass/mv221.ass",
+      "source_sha256": "293ae9d276eddbdc51b682a97130d3433fd7ce4fa46b6eb8d4de6f5230b78ff5",
+      "accepted_output_sha256": [
+        "c86e0cd7ef1319367040c1b4896ff0aa99c97e2c28c71a5e300c1e481b59693e"
+      ],
+      "expected_output_sha256": "87ffb0678d819a7de0d5bf083af220ab75208d1d2df5c5d442e2bf0112011500",
+      "packet_fixed_sha256": "d43d88b6a1c4682e0cf33db6c49e9857aa8190b2b915f3cc01be3e36e049fcd8",
+      "expected_output_size_bytes": 35482122,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 369.135,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv230",
+      "film_id": "mv230",
+      "quality": "high",
+      "relative_install_path": "mv230.pak",
+      "ass_path": "ass/mv230.ass",
+      "source_sha256": "346c587b4a0f8aaa4bbf6cd3e906eb1fd2738130e5e722c7486e123d61378c87",
+      "accepted_output_sha256": [
+        "466ec85ce0d1eed54ebcbf46531be778be6193b3c829abc928a6ad4706a5ec13"
+      ],
+      "expected_output_sha256": "1d39cc8062d9c2468fb95a3f79b03d8bcf21bbc656c83406c5913f2f2db5e2f4",
+      "packet_fixed_sha256": "ea54128223a50125a0bc050d63382449c12ac4a8e7412485b2a6cdc553612557",
+      "expected_output_size_bytes": 98505946,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 358.124,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv231",
+      "film_id": "mv230",
+      "quality": "low",
+      "relative_install_path": "mv231.pak",
+      "ass_path": "ass/mv231.ass",
+      "source_sha256": "6eb3d0fe0a54490b2e2049b42b0252b19517057efd364116dc97f1295d9655a4",
+      "accepted_output_sha256": [
+        "f048f9c5820279ca5cee2b6588fb36ea912a2c380a52a2e02e62abe64f153505"
+      ],
+      "expected_output_sha256": "267cd746f9db5844cc8cf59093c4cf16407ca63c0953340c1210e1a277b600fa",
+      "packet_fixed_sha256": "984fe5f3434e9b3d35c5e330e8449b7975a8d0bb1a17b325e6a5aaf6bb1b303f",
+      "expected_output_size_bytes": 34426056,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 358.124,
+      "video_bitrate": "600k"
+    },
+    {
+      "asset_id": "mv240",
+      "film_id": "mv240",
+      "quality": "high",
+      "relative_install_path": "mv240.pak",
+      "ass_path": "ass/mv240.ass",
+      "source_sha256": "cec58a271659e4cc2e7fe2ae7651a0e3f8d3169653cff0cea2cfc980e210484a",
+      "accepted_output_sha256": [
+        "1f65d0094ef3a020378d21bfd5648efd8a05053ae4127ec1cb55316f0f875463"
+      ],
+      "expected_output_sha256": "4e70cee8ee812f458e8c7652aba5c0c44c406e0f61402d1fa6c01e5d5a8853e3",
+      "packet_fixed_sha256": "9792309fca6b6ee28921b48ae4e96640228b6c832f431fc84fa0482cdd981196",
+      "expected_output_size_bytes": 59301930,
+      "width": 1280,
+      "height": 720,
+      "duration_seconds": 222.463,
+      "video_bitrate": "2M"
+    },
+    {
+      "asset_id": "mv241",
+      "film_id": "mv240",
+      "quality": "low",
+      "relative_install_path": "mv241.pak",
+      "ass_path": "ass/mv241.ass",
+      "source_sha256": "0a01d596d758cc0e8642700be089e155992f5e08034c2842b5bd5804c28425b1",
+      "accepted_output_sha256": [
+        "6449742cbc4f4286de572c752de2045166be3e8bd85102580df892dd80a37671"
+      ],
+      "expected_output_sha256": "ef9be7b9f985708f515159cc6c77f3b898705d648890b6196f8965cd5721cb26",
+      "packet_fixed_sha256": "7cb8fda928f508e813a64bbcf3cfdc07a15fc13e534594d52fdd3fe8cff0011f",
+      "expected_output_size_bytes": 21062038,
+      "width": 704,
+      "height": 480,
+      "duration_seconds": 222.122,
+      "video_bitrate": "600k"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "issue": "https://github.com/MAO-TLs/white-album-2/issues/14",
+  "date": "2026-10-28",
+  "status": "unpublished candidate; native Windows playback confirmation pending",
+  "inputs": "30 SHA-256-verified current translated movies from private v2.1.0 test installation",
+  "native_ffmpeg_7_1_1": {"movies_passed": 30, "movies_total": 30},
+  "pinned_windows_ffmpeg_9_0_under_wine": {"movies_passed": 30, "movies_total": 30},
+  "checks_per_movie": [
+    "approved input SHA-256",
+    "packet size computed from actual WAVEFORMATEX nBlockAlign plus 28 bytes",
+    "identical SHA-256 for each encoded media stream",
+    "identical per-stream packet count, timestamps, durations, sizes and flags",
+    "complete audio/video decoding with -xerror",
+    "byte-identical backup",
+    "idempotent second repair"
+  ],
+  "intro_failure_tests": ["wrong approved output hash leaves input unchanged", "existing backup is not overwritten"],
+  "unit_tests_and_go_vet": "passed",
+  "packet_sizes_bytes": [5490, 8220, 10951, 11917],
+  "windows_candidate_archive": "WA2_Movie_Packet_Repair_RC1.zip",
+  "windows_candidate_sha256": "a357755c429d3bc7072613b466c06d930f9bce316a3f85516985bbb4dca4b2b7",
+  "native_windows_playback_test": false,
+  "new_original_to_translated_full_render_test": false,
+  "game_installation_movies_changed": false,
+  "published": false,
+  "issue_closed": false
+}
